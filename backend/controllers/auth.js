@@ -72,8 +72,7 @@ console.log('login',login,'password:;:',password);
 exports.signup = async (req, res, next) => {
   console.log('SIGN UP \n req.body', req.body);
   const office = await Office.findOne({ numb: req.body.office });
-  /*   console.log('office.id', office.id); */
-  try {
+    try {
     const user = await User.create({
       login: req.body.login,
       role: req.body.role,

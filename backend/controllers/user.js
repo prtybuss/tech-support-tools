@@ -1,6 +1,6 @@
-const ticket_controller = require('./ticketController');
-const message_controller = require('./messageController');
-const base = require('./baseController');
+const ticket_controller = require('./ticket');
+const message_controller = require('./message');
+const base = require('./base');
 
 const userSchema = require('../models/users');
 const ticketSchema = require('../models/tickets');
@@ -16,7 +16,7 @@ const Office = db.model("office", officeSchema);
 
 exports.ticket_list = ticket_controller.ticket_list(Ticket, Message);
 exports.message_read = ticket_controller.message_read(Ticket, Message);
-exports.ticket_detail = ticket_controller.ticket_detail(Ticket);
+exports.ticket_detail = ticket_controller.ticket_details(Ticket);
 exports.ticket_create = ticket_controller.ticket_create(Ticket, Message, User, Office);
 exports.ticket_update = ticket_controller.ticket_update(Ticket);
 exports.ticket_delete = ticket_controller.ticket_delete(Ticket);

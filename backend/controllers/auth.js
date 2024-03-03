@@ -26,12 +26,10 @@ exports.signin = async (req, res, next) => {
   console.log('login \n req.body', req.body);
   try {
     const { login, password } = req.body;
-console.log('login',login,'password:;:',password);
     if (!login || !password) {
       return next(new AppError(404, "fail", "Please provide login or password"),
         req, res, next,);
     }
-
     // 2) check if user exist and password is correct
     const user = await User.findOne({ login, })/* .select("+password") */;
 
@@ -39,8 +37,6 @@ console.log('login',login,'password:;:',password);
       req.body.password,
       user.password
     );
-
-    console.log('passwordIsValid:', passwordIsValid);
 
     if (!user || !(await passwordIsValid)) {
       return next(
@@ -72,7 +68,7 @@ console.log('login',login,'password:;:',password);
 exports.signup = async (req, res, next) => {
   console.log('SIGN UP \n req.body', req.body);
   const office = await Office.findOne({ numb: req.body.office });
-    try {
+  try {
     const user = await User.create({
       login: req.body.login,
       role: req.body.role,

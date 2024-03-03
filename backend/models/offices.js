@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const dotenv = require('dotenv');
+dotenv.config({
+    path: './config.env'
+});
 
 const imgSchema = new Schema({
 	name: String,
@@ -54,7 +58,7 @@ const officeSchema = new Schema({
 		virtuals: {
 			fileServerIp: {
 				get() {
-					return '\\\\' + this.ip.replace('*', '7') + '\\'
+					return '\\\\' + this.ip.replace('*', process.env.FSHOSTADRESS) + '\\'
 				}
 			}
 		}

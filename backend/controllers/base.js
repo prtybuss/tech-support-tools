@@ -1,5 +1,5 @@
 
-exports.getStart = Office => async (req, res, next) => {
+exports.unauthorized = Office => async (req, res, next) => {
 	console.log(req.ip);
 	let i = req.ip.lastIndexOf('.');
 	let reqIp = req.ip.substring(0, i) + '.*';

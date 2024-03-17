@@ -12,7 +12,7 @@ const Message = db.model("message", messageSchema);
 const User = db.model("User", userSchema);
 const Office = db.model("office", officeSchema);
 
-/* exports.go_home = base.getStart(Office); */
+exports.unauthorized = base.unauthorized(Office);
 
 exports.ticket_list = ticket_controller.ticket_list(Ticket, Message);
 exports.message_read = ticket_controller.message_read(Ticket, Message);

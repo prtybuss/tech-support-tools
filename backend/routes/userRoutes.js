@@ -4,7 +4,8 @@ const user_controller = require('../controllers/user')
 const auth_controller = require('../controllers/auth');
 const adminRoutes = require('./adminRoutes');
 
-/* router.get('/home', user_controller.go_home);  */
+
+router.get('/home', user_controller.unauthorized); 
 
 router.post('/signin', auth_controller.signin);
 router.post('/signup', auth_controller.signup);
@@ -22,7 +23,10 @@ router.post('/ticket', user_controller.ticket_create);
 router.post('/ticket/:id', user_controller.ticket_update)
 router.delete('/ticket/:id', user_controller.ticket_delete);
 
+
 router.use(auth_controller.restrictTo('admin'));
 router.use('/api', adminRoutes);
 
+
 module.exports = router;
+

@@ -11,9 +11,6 @@ import ServiceDesk from './pages/Servicedesk/ServiceDesk';
 import NavBar from './layout/NavBar';
 
 
-/* TODO */
-// keep user on same page after f5
-// signin через asynkThunk
 
 function App() {
 

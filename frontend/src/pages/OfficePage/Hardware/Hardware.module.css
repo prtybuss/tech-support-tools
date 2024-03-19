@@ -1,0 +1,71 @@
+.hw {
+	row-gap: 8px;
+	padding: 3px 15px;
+	display: grid;
+	grid-template-areas:
+		"options options"
+		"info edit";
+	grid-template-rows: min-content auto;
+	grid-template-columns: auto 20px;
+	font-size: 14px;
+	align-items: stretch;
+}
+
+.Options {
+	grid-area: options;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+.Options__item {
+	border: none;
+	width: max-content;
+	background: transparent;
+	margin-inline: 5px;
+	cursor: pointer;
+}
+
+.Options__item:hover {
+	outline: 2px dashed purple;
+	margin-inline: 5px;
+	transition: border-color ease-out 400ms;
+}
+
+.Options__item_current {
+	/* border: none; */
+	border-top: 1px solid black;
+	width: max-content;
+	margin-inline: 5px;
+	cursor: poiаnter;
+}
+
+.hw_info {
+	grid-area: info;
+	grid-row: 2/3;
+	grid-column: 1/2;
+}
+
+.hw_textarea {
+	grid-area: info;
+	grid-row: 2/3;
+	grid-column: 1/2;
+	background-color: #f9f7ed;
+	width: -webkit-fill-available;
+	resize: none;
+	font-size: 0.9em;
+	font-family: monospace;
+	/* background: none; */
+	display: flex;
+	flex-direction: column;
+	border-radius: 0;
+	border: none;
+	transition: backgroung-color 0.3s ease;
+	outline: none;
+	padding: 0;
+}
+
+.edit_btns {
+	grid-area: edit;
+
+}

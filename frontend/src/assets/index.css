@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+
+@font-face {
+	font-family: "Comments";
+	/*Can be any text*/
+	src: local("infoOffice"),
+		url("./fonts/Montserrat-BoldItalic.ttf") format("ttf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,300&family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,300&display=swap');
+
+:root {
+	--color-PRIMARY: #b7d7d5;
+	--color-grey: #545143;
+	--color-beige: #E0D6A8;
+	----color-beigE: #efe2a9;
+	--color-blue: #B7D7D5;
+	--color-purple: #594356;
+	--color-darkgreen: #3B4F4E;
+	--color-buttonGreenVariant:
+}
+
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+}
+
+.msymb_icon {
+	font-family: 'Material Icons';
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24
+}
+
+.msymb_icon :hover {
+	cursor: pointer;
+
+}
+
+svg {
+	fill: rgba(0, 0, 0, 0.2) !important;
+}
+
+.button-modal {
+	display: inline-flex;
+	padding: 5px 25px;
+	border-bottom: 1px solid #5451435f;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 500;
+	font-size: 16px;
+	border-radius: 15px;
+	align-items: center;
+	border: 1px solid transparent;
+	color: #594356;
+	cursor: pointer;
+}
+
+.button-modal:disabled:hover {
+	outline: none;
+	box-shadow: none;
+	cursor: default;
+}
+
+.button-modal:hover {
+	transition: outline-color 0.5s ease;
+	outline: 2px dashed black;
+	box-shadow: -1px 5px 2px #ddc08d;
+}
+
+.btn {
+	background-color: #d6cca138;
+	border-radius: 0.2em;
+	background-color: transparent;
+	border: none;
+	color: black;
+	text-decoration: none;
+	outline: 2px dashed transparent;
+}
+
+
+.btn:hover {
+	transition: outline-color 0.5s ease;
+	outline: 2px dashed black;
+	box-shadow: -1px 5px 2px #ddc08d;
+	background: white;
+}
+
+body {
+	font-family: sans-serif;
+	margin: 0;
+	font-size: 1.0em;
+}
+
+.app_wrap {
+	height: 100%;
+	grid-column-gap: 24px;
+	grid-row-gap: 8px;
+	/* 	background: #b7d7d5; */
+	box-sizing: border-box;
+	display: grid;
+	background: linear-gradient(#b7d7d5, #90b0cb00);
+	grid-template-areas:
+		"q navbar navbarbuttons w"
+		"q tags tags w"
+		"x LeftSection RightSection y";
+	grid-template-columns: 1fr 7fr 7fr 1fr;
+	grid-template-rows: 50px minmax(50px, max-content) minmax(450px, max-content);
+}
+
+
+/* -------------TAGS BLOCK------------- */
+
+.tagContainer {
+	display: inline-flex;
+	padding: 16px 8px;
+	background: #f9f7ed;
+	font-size: 14px;
+	border-radius: 6px;
+	color: #594356;
+	height: min-content;
+	cursor: pointer;
+}
+
+.tagContainer.deletable {
+	color: red;
+}
+
+.tagContainer:hover {
+	transition: outline-color 0.5s ease;
+	outline: 2px dashed black;
+	color: #174744;
+	border-radius: 6px;
+	box-shadow: -1px 5px 2px #ddc08d;
+	background: white;
+}
+
+.Myinput {
+	border: none;
+	background: none;
+	width: 100px;
+}
+
+
+.Myinput:focus {
+	border: none;
+	background-color: beige;
+	outline: none;
+	transition: opacity 0.5s ease;
+	opacity: 0.7;
+}
+
+.infoBlock_textarea #NewTagInput {
+	flex-shrink: 10;
+	position: absolute;
+	top: 0;
+}
+
+/* -------------LEFT SECTION------------- */
+#LeftSection {
+	row-gap: 0px;
+	display: flex;
+	flex-direction: column;
+	/* margin-left: 1vw; */
+	grid-area: LeftSection;
+	border-radius: 7px;
+	outline: 1px solid #dceeed;
+}
+
+.InfoBlock {
+	font-size: 18px;
+	color: #545143;
+	position: relative;
+	padding: 9px 24px 10px 4px;
+}
+
+
+.InfoBlock::before {
+	color: #caba9f;
+	border-bottom-left-radius: 6px;
+	right: 0;
+	content: attr(title);
+	font-size: 0.7em;
+	z-index: 0;
+	position: absolute;
+	bottom: 0;
+	padding: 2px 12px;
+}
+
+.InfoBlock:first-of-type {
+	border-radius: 8px 0px 0px 0px;
+
+	flex-grow: 3;
+}
+
+.InfoBlock:nth-of-type(2) {
+	flex-grow: 2;
+}
+
+.InfoBlock:nth-of-type(3) {
+	border-radius: 0;
+	flex-grow: 1;
+}
+
+.InfoBlockContainer {
+	/* background: #B7D7D5;
+	border-radius: 3px;
+	padding: 5px 10px;
+	grid-column-gap: 5px;
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center; */
+
+	background: #B7D7D5;
+	border-radius: 3px;
+	padding: 5px 15px;
+
+}
+
+/* -------------RIGHT SECTION------------- */
+#RightSection {
+
+	grid-area: RightSection;
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+	grid-area: RightSection;
+	border-radius: 7px;
+}
+
+.audio {
+	cursor: pointer;
+}
+
+.audio:hover {
+	color: #623380;
+}
+
+.lightbox img {
+	z-index: 4;
+	border-radius: 1em;
+	display: block;
+	margin: auto;
+	max-height: 80vh;
+	max-width: 90vh;
+}
+
+#pickedTag {
+	color: #1f3d565b;
+	position: relative;
+	font-size: 1.1em;
+	grid-area: pickedTag;
+}

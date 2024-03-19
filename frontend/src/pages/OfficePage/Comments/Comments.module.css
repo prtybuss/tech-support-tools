@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,300&display=swap');
+
+.Comment {
+	padding: 2px;
+	display: grid;
+	justify-items: start;
+	grid-template-areas:
+		"text date"
+		"text author";
+	border-bottom: 1px solid #8d8a7a;
+	grid-template-rows: 16px minmax(16px, auto);
+	grid-template-columns: auto 80px;
+	font-weight: 600;
+	font-family: 'Nunito Sans', sans-serif;
+}
+
+.Comment.MyComment {
+	cursor: pointer;
+}
+
+.Comment.MyComment:hover {
+	background: #dceeed;
+}
+
+.Comment__text {
+	grid-area: text;
+	grid-row: 1 / 3;
+	grid-column: 1/2;
+	font-size: 16px;
+}
+
+.Comment__date {
+	color: #3b4f4e;
+	grid-area: date;
+	text-align: right;
+}
+
+.Comment__author {
+	color: #728685;
+	text-align: right;
+	grid-area: author;
+}
+
+.Comment__deleteBtn {
+	text-align: center;
+	grid-area: author;
+}
+
+.Comment__deleteBtn:hover {
+	color: #545143;
+}
+
+
+.Comments {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	row-gap: 5px;
+	width: 100%;
+}
+
+.Comments__submit {
+	border: none;
+	background: none;
+	text-align: center;
+	height: min-content;
+	color: #594356;
+	padding: 9px 26px;
+	border-radius: 6px;
+	background: #DDC08D;
+	color: #545143;
+	box-shadow: -2px 2px 2px #ddc08d4d;
+	border: 1px solid transparent;
+}
+
+.Comments_textarea {
+	padding: 3px 5px;
+}
+
+.Comments__submit:disabled {
+	background: #e4f0ef;
+	transition: background-color 0.5s ease;
+}
+
+.Comments__submit:hover {
+	background: #efe2a9;
+}

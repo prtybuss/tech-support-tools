@@ -1,0 +1,48 @@
+.Links {
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+}
+
+.Tags {
+	background: var(--color-PRIMARY);
+	display: flex;
+	color: rgba(0, 0, 0, 0.7);
+	position: relative;
+	padding: 3px 5px 3px 15px;
+	font-weight: 500;
+	align-items: flex-end;
+	justify-content: space-between;
+
+}
+
+.officeTags {
+	font-weight: 500;
+	/* grid-column-gap: 10px; */
+	column-gap: 6px;
+	row-gap: 4px;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.controls {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+.dd_list {
+	cursor: pointer;
+	flex-basis: 95px;
+	width: max-content;
+	height: 100%;
+	display: inline-flex;
+	flex-wrap: wrap;
+	position: relative;
+	align-items: center;
+	flex-direction: row;
+	align-content: space-around;
+	justify-content: center;
+}

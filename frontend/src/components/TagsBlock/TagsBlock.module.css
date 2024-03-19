@@ -1,0 +1,48 @@
+.tagsblock {
+	font-weight: 500;
+	grid-column-gap: 10px;
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	grid-area: tags;
+	color: var(--color-darkgreen);
+	cursor: pointer;
+}
+
+.tagsblock_item {
+	display: inline-flex;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding: 3px 15px;
+	background: var(----color-beigE);
+	font-size: 12px;
+	border-radius: 6px;
+	height: min-content;
+	cursor: pointer;
+}
+
+.tagsblock_item:hover {
+	box-shadow: -1px 5px 2px #ddc08d;
+	background: rgba(255, 255, 255, 0.19);
+}
+
+.active {
+	background: #efe2a9;
+}
+
+.deletable {
+	color: red;
+}
+
+.tagsblock_item__current {
+	display: inline-flex;
+	padding: 5px 3px;
+	background: #a59d75;
+	font-size: 14px;
+	border-radius: 6px;
+	height: min-content;
+	cursor: pointer;
+}
+
+.tagsblock_item.deletable {
+	color: red;
+}

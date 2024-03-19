@@ -1,0 +1,53 @@
+.ListItem {
+	width: 133px;
+	display: inline-flex;
+	position: relative;
+	padding: 3px 5px;
+	font-size: 14px;
+	border-left: 1px solid #54514329;
+	background: #f9f7ed;
+	position: relative;
+	border-radius: 6px;
+	align-items: center;
+	border: 1px solid transparent;
+	border-radius: 6px;
+	color: #594356;
+	height: min-content;
+	margin-right: 10px;
+}
+
+.ListItem.RestItems {
+	background: #96b7b5;
+}
+
+.listItem_span:hover {
+	font-weight: bold;
+}
+
+.ListItem:hover {
+	cursor: pointer;
+	background: #efe2a9;
+	box-shadow: -2px 3px 2px #ddc08d4d;
+	border-bottom: 1px solid #54514329;
+}
+
+.ListItem__icon {
+	width: 12px !important;
+	height: 12px !important;
+	margin-left: auto;
+	padding: 0;
+	color: red;
+
+}
+
+.ListItemButton {
+	position: absolute;
+	background: none;
+	border: none;
+	margin-right: auto;
+	right: 0;
+	justify-content: center;
+	text-align: center;
+	display: flex;
+
+}

@@ -1,0 +1,52 @@
+.myModal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	display: none;
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.myModal.active {
+	z-index: 3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.myModal img {
+	margin: -20px -35px;
+	z-index: 4;
+	border-radius: 1em;
+	display: block;
+	margin: auto;
+	max-height: 80vh;
+	max-width: 90vh;
+}
+
+.myModalContent {
+	border-radius: 1em;
+	/* background: #b7d7d5; */
+	background: #caba9f;
+	border-radius: 1em;
+	/* min-width: 350px; */
+	padding: 20px 35px;
+}
+
+.myModalContent>div {
+
+	display: flex;
+	flex-direction: column;
+}
+
+/* #NewLinkInputForm input {
+	width: 100% !important;
+	background: #5943564d;
+	color: black;
+
+}
+
+#NewLinkInputForm button {
+	background: #5943564d;
+} */

@@ -1,0 +1,51 @@
+.listwrap {
+	width: 100%;
+	display: inline-grid;
+	grid-template-areas:
+		". . . ."
+		". a b ."
+		". a b ."
+		". a b .";
+	grid-column-start: 2;
+	grid-column-end: 4;
+	grid-template-columns: 1fr 350px 350px 1fr;
+}
+
+.list_l {
+	row-gap: 6px;
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	grid-template-rows: repeat(auto-fill, 25px);
+	grid-auto-flow: column;
+	max-height: 400px;
+	grid-area: a;
+}
+
+.list_r {
+	row-gap: 6px;
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	grid-template-rows: repeat(auto-fill, 25px);
+	grid-auto-flow: column;
+	max-height: 400px;
+	grid-area: b;
+}
+
+
+.taglist {
+	max-height: 450px;
+}
+
+
+#TagList::before {
+	top: 0px;
+	color: #545143;
+	border-radius: 0 -71px 6px 0;
+	right: 0;
+	content: attr(title);
+	font-size: 0.7em;
+	z-index: 0;
+	position: absolute;
+	bottom: 0;
+	padding: 6px 15px;
+}

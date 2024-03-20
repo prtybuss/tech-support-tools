@@ -1,12 +1,8 @@
 .Link {
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
-	/* box-shadow: inset 0px -1px 1px 0px #caba9f; */
-	/* text-align: center; */
 	height: min-content;
-	/* 	background: rgb(255 255 255 / 89%); */
 	background: #90b0cb57;
-	/* color: #90b0cb; */
 	color: #484545;
 	border: 1px solid transparent;
 	text-decoration: none;
@@ -29,13 +25,7 @@
 }
 
 .Link:hover {
-	/*  box-shadow: -4px 5px 2px #ddc08d4d; */
-	background: #623380;
+	background: #484545;
+	transition: background-color ease-out 400ms;
 	color: #ddc08d;
-	/* border-radius: 3px;
-	text-shadow: 3px 3px black; */
 }
-
-/* .Link:last-of-type {
-  flex-grow: 2;
-} */

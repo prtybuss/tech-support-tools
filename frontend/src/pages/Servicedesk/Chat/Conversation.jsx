@@ -33,7 +33,7 @@ const Conversation = () => {
 
 	const handleClickOutside = e => {
 		if (!messageInputRef.current.contains(e.target)) {
-			/*  newMessage.setValue(''); */
+
 		}
 	};
 
@@ -44,7 +44,7 @@ const Conversation = () => {
 
 	const handleSubmit = async (e) => {
 		dispatch(createMessage({ ticketid: currentTicketId, text: newMessage.value }));
-		/* newMessage.setValue(''); */
+
 	}
 
 	return (
@@ -78,22 +78,3 @@ const Conversation = () => {
 }
 export default Conversation;
 
-/*  <div className={(m.author._id === userId) ? classes.msended : classes.mreceived}>
-
-	 <div className={classes.mhead}>
-		 <div className={classes.mauthor}>
-			 {m.author.login}
-		 </div>
-		 <div className={classes.mtime}>
-			 {time}
-		 </div>
-		 <div className={classes.mdelete_btn}>
-			 Удалить
-		 </div>
-	 </div>
-
-	 <div className={classes.mtext}>
-		 {m.text}
-	 </div>
-
- </div> )*/

@@ -17,7 +17,6 @@ const NewLinkInputForm = ({ setVisible }) => {
 	};
 
 	return (
-		/*  <div id="NewLinkInputForm" > */
 		<div className={cl.newlinkform}>
 			<div className={cl.newlinkform__header}>Добавить ссылку</div>
 			<input
@@ -37,7 +36,6 @@ const NewLinkInputForm = ({ setVisible }) => {
 				ok
 			</button>}
 		</div>
-		/*  </div> */
 	)
 }
 

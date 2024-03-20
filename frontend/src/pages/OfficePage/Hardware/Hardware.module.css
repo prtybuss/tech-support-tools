@@ -1,43 +1,87 @@
 .hw {
-	row-gap: 8px;
-	padding: 3px 15px;
+	/* 	
 	display: grid;
 	grid-template-areas:
 		"options options"
 		"info edit";
 	grid-template-rows: min-content auto;
-	grid-template-columns: auto 20px;
-	font-size: 14px;
+	grid-template-columns: auto 20px; */
+
 	align-items: stretch;
 }
 
-.Options {
-	grid-area: options;
+.hw_header {
+	font-size: 12px;
+	min-height: 30px;
+	display: flex;
+	color: var(--color-darkgreen);
+	position: relative;
+	font-weight: 500;
+	position: relative;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.hw_header__options {
+	font-weight: 500;
+	grid-column-gap: 5px;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.hw_header__options_item {
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	height: min-content;
+	background: rgb(255 255 255 / 89%);
+	color: #484545;
+	text-decoration: none;
+	position: relative;
+	padding: 3px 15px;
+	cursor: pointer;
+}
+
+.hw_header__options_item:hover {
+	background: #484545;
+	color: rgb(255 255 255 / 89%);
+	transition: background-color ease-out 400ms;
+}
+
+.hw_header__options_item_current {
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	height: min-content;
+	background: #90b0cb57;
+	color: #484545;
+	text-decoration: none;
+	position: relative;
+	padding: 3px 15px;
+	cursor: pointer;
+}
+
+
+.hw_header__controls {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 }
 
-.Options__item {
-	border: none;
-	width: max-content;
-	background: transparent;
-	margin-inline: 5px;
-	cursor: pointer;
+.hw_header__controls_button {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 }
 
-.Options__item:hover {
-	outline: 2px dashed purple;
-	margin-inline: 5px;
-	transition: border-color ease-out 400ms;
-}
+.hw_body {
+	background: var(--color-PRIMARY);
+	display: flex;
+	color: rgba(0, 0, 0, 0.7);
+	position: relative;
+	padding: 15px 5px 15px 15px;
+	font-weight: 500;
+	align-items: center;
+	justify-content: space-between;
 
-.Options__item_current {
-	/* border: none; */
-	border-top: 1px solid black;
-	width: max-content;
-	margin-inline: 5px;
-	cursor: poiаnter;
 }
 
 .hw_info {
@@ -55,7 +99,6 @@
 	resize: none;
 	font-size: 0.9em;
 	font-family: monospace;
-	/* background: none; */
 	display: flex;
 	flex-direction: column;
 	border-radius: 0;

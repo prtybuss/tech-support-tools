@@ -1,116 +1,115 @@
 .body {
-  box-shadow: inset 3px -3px var(--color-purple);
-  position: relative;
-  grid-column-gap: 35px;
-  column-gap: 35px;
-  box-sizing: border-box;
-  /* background: linear-gradient(#b7d7d5, #90b0cb00); */
-  flex-direction: column;
-  display: grid;
-  grid-template-areas:
-    "controls controls "
-    "list chat ";
-  grid-template-columns: 300px 500px;
-  grid-template-rows: 40px 500px;
+	box-shadow: inset 3px -3px var(--color-purple);
+	position: relative;
+	grid-column-gap: 35px;
+	column-gap: 35px;
+	box-sizing: border-box;
+	flex-direction: column;
+	display: grid;
+	grid-template-areas:
+		"controls controls "
+		"list chat ";
+	grid-template-columns: 300px 500px;
+	grid-template-rows: 40px 500px;
 }
 
 .controls {
-  box-shadow: inset 0px 2px 6px rgb(255 255 255 / 89%);
-  background: linear-gradient(#e4f0ef, #f9fbfb);
-  font-family: sans-serif;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  align-content: stretch;
-  height: 100%;
-  grid-area: controls;
-  flex-direction: row;
-  justify-content: space-between;
+	box-shadow: inset 0px 2px 6px rgb(255 255 255 / 89%);
+	background: linear-gradient(#e4f0ef, #f9fbfb);
+	font-family: sans-serif;
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: wrap;
+	align-content: stretch;
+	height: 100%;
+	grid-area: controls;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 
 
 .nav_btn:hover {
-  background-color: #563c5c0f;
-  transition: color 100ms ease-in;
+	background-color: #563c5c0f;
+	transition: color 100ms ease-in;
 }
 
 .chat {
-  border-top-left-radius: 10px;
-  position: relative;
-  grid-area: RightSection;
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+	border-top-left-radius: 10px;
+	position: relative;
+	grid-area: RightSection;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 }
 
 .currentTicket_controls {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
 }
 
 .chat_body {
-  row-gap: 10px;
-  max-height: 500px;
-  padding: 15px;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
+	row-gap: 10px;
+	max-height: 500px;
+	padding: 15px;
+	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
 }
 
 .messageInput {
-  padding: 10px;
-  grid-area: messageInput;
-  display: inline-flex;
-  flex-direction: row;
+	padding: 10px;
+	grid-area: messageInput;
+	display: inline-flex;
+	flex-direction: row;
 }
 
 .textarea {
-  border: 1px solid #dceeed;
-  background: rgba(255, 255, 255, 0.256);
-  border-radius: 6px;
-  margin: 5px;
-  width: inherit;
-  background: none;
-  border-radius: 0;
-  border: none;
-  transition: backgroung-color 0.3s ease;
-  outline: none;
-  padding: 0;
-  width: -webkit-fill-available;
-  resize: none;
-  font-size: 0.9em;
+	border: 1px solid #dceeed;
+	background: rgba(255, 255, 255, 0.256);
+	border-radius: 6px;
+	margin: 5px;
+	width: inherit;
+	background: none;
+	border-radius: 0;
+	border: none;
+	transition: backgroung-color 0.3s ease;
+	outline: none;
+	padding: 0;
+	width: -webkit-fill-available;
+	resize: none;
+	font-size: 0.9em;
 }
 
 .send_button {
-  border: none;
-  font-size: 16px;
-  padding: 5px 25px;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: row;
-  grid-area: edit;
-  cursor: pointer;
-  justify-content: space-between;
-  align-items: center;
-  width: fit-content;
+	border: none;
+	font-size: 16px;
+	padding: 5px 25px;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: row;
+	grid-area: edit;
+	cursor: pointer;
+	justify-content: space-between;
+	align-items: center;
+	width: fit-content;
 }
 
 .send_button:hover {
-  background: #efe2a9;
+	background: #efe2a9;
 }
 
 .send_button:disabled {
-  background: #e4f0ef;
-  transition: background-color 0.5s ease;
+	background: #e4f0ef;
+	transition: background-color 0.5s ease;
 }
 
 .text_input {
-  margin: 10px;
-  width: 250px;
-  height: 20px;
+	margin: 10px;
+	width: 250px;
+	height: 20px;
 }

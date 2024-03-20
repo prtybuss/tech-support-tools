@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import office from "../services/office.service.js";
+import store from "../store.js";
 
 
 const initialState = {
@@ -10,9 +11,9 @@ const initialState = {
 export const getDirectoryContent = createAsyncThunk('files/getDirContent', async ({ officeId, userId, subfolder }) => {
 	console.log('fficeId, userId, subfolder', officeId, userId, subfolder);
 	try {
-		const res = await office.getDirContent(officeId, userId, subfolder)
+		const res = await office.getDirContent(officeId, userId, subfolder);
+		store.dispatch(filesLoaded(res.data))
 		return res.data;
-
 	} catch (error) { console.error(error); }
 })
 
@@ -25,7 +26,12 @@ const filesSlice = createSlice({
 		status: 'idle',
 	},
 	reducers: {
-		dataCleared: () => initialState
+		filesCleared: () => initialState,
+		filesLoaded: (state, action) => {
+			const filesList = action.payload;
+			state.files = filesList?.filter(f => f.isDirectory === false);
+			state.folders = filesList?.filter(f => f.isDirectory === true);
+		},
 	},
 	extraReducers(builder) {
 		builder
@@ -36,12 +42,11 @@ const filesSlice = createSlice({
 				state.status = 'loading'
 			})
 			.addCase(getDirectoryContent.fulfilled, (state, action) => {
-				state.status = 'succeeded';
-				console.log('11',);
-				/* 	const filesList = action.payload;
-	
-					state.files = filesList?.filter(f => f.isDirectory === false);
-					state.folders = filesList?.filter(f => f.isDirectory === true); */
+				state.status = 'succeeded';/* 
+				const filesList = action.payload;
+
+				state.files = filesList?.filter(f => f.isDirectory === false);
+				state.folders = filesList?.filter(f => f.isDirectory === true); */
 			})
 	}
 })

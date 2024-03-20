@@ -1,127 +1,119 @@
 .list_wrap {
-  display: flex;
-  flex-direction: column;
-  grid-area: LeftSection;
+	display: flex;
+	flex-direction: column;
+	grid-area: LeftSection;
 }
 
 
 .list {
-  margin: 10px;
-  row-gap: 3px;
-  margin-top: 13px;
-  font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
-  height: inherit;
-  display: inline-grid;
+	margin: 10px;
+	row-gap: 3px;
+	margin-top: 13px;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	height: inherit;
+	display: inline-grid;
 }
 
 .filters {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 }
 
 .filter_option {
-  border: none;
-  width: max-content;
-  background: transparent;
-  margin-inline: 5px;
-  padding: 3px 5px;
-  cursor: pointer;
+	border: none;
+	width: max-content;
+	background: transparent;
+	margin-inline: 5px;
+	padding: 3px 5px;
+	cursor: pointer;
 }
 
 .filter_option:hover {
-  border-bottom: 2px dashed purple;
-  margin-inline: 5px;
-  transition: border-color ease-out 100ms;
+	border-bottom: 2px dashed purple;
+	margin-inline: 5px;
+	transition: border-color ease-out 100ms;
 }
 
 .filter_option_current {
-  border: none;
-  border-top: 2px solid black;
-  width: max-content;
-  /*  background: rgb(247, 236, 236); */
-  margin-inline: 5px;
-  padding: 3px 5px;
-  cursor: pointer;
+	border: none;
+	border-top: 2px solid black;
+	width: max-content;
+	margin-inline: 5px;
+	padding: 3px 5px;
+	cursor: pointer;
 }
 
 
 .list_element {
-  position: relative;
-  border-radius: 15px;
-  padding: 6px 12px 10px 4px;
-  width: inherit;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  color: #484545;
-  /* font-family: 'Roboto Condensed', sans-serif; */
-  font-weight: 500;
-  border: 1px solid #623380;
-  cursor: pointer;
+	position: relative;
+	border-radius: 15px;
+	padding: 6px 12px 10px 4px;
+	width: inherit;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	color: #484545;
+	font-weight: 500;
+	border: 1px solid #623380;
+	cursor: pointer;
 
 
 }
 
 .list_element_picked {
-  position: relative;
-  border-radius: 6px;
-  padding: 6px 12px 10px 4px;
-  width: inherit;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  /*   color: #DDC08D; */
-  background-color: #DDC08D;
-  transition: background-color ease-in 100ms;
+	position: relative;
+	border-radius: 6px;
+	padding: 6px 12px 10px 4px;
+	width: inherit;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	background-color: #DDC08D;
+	transition: background-color ease-in 100ms;
 
-  cursor: pointer;
-  flex-wrap: nowrap;
+	cursor: pointer;
+	flex-wrap: nowrap;
 }
 
 .list_element:hover {
-  /*  border-top-left-radius: 0;
-  border-bottom-left-radius: 0; */
-  transition: padding-right 100ms;
-  /* 
-  border-right: 2px solid var(--color-purple); */
-  background-color: #E4F0EF;
-  padding-right: 20px;
-  color: #545143;
-  transition: background-color 100ms ease-in;
+	transition: padding-right 100ms;
+	background-color: #E4F0EF;
+	padding-right: 20px;
+	color: #545143;
+	transition: background-color 100ms ease-in;
 
 }
 
 .le_sort {
-  font-weight: 600;
-  font-family: sans-serif;
-  background: #F9F7ED;
-  text-align: right;
-  border: none;
-  background: transparent;
+	font-weight: 600;
+	font-family: sans-serif;
+	background: #F9F7ED;
+	text-align: right;
+	border: none;
+	background: transparent;
 }
 
 
 .le_authorName {
-  padding: 1px 1px 1px 3px;
-  border-radius: 3px;
-  font-weight: 600;
-  font-family: 'Nunito Sans', sans-serif;
-  color: #563C5C;
-  background: #F9F7ED;
-  /* font-family: Arial, Helvetica, sans-serif; */
-  font-size: 0.7rem;
+	padding: 1px 1px 1px 3px;
+	border-radius: 3px;
+	font-weight: 600;
+	font-family: 'Nunito Sans', sans-serif;
+	color: #563C5C;
+	background: #F9F7ED;
+	font-size: 0.7rem;
 }
 
 .le_date {
-  font-size: 0.8rem;
-  position: absolute;
-  right: 0;
-  color: #563C5C;
+	font-size: 0.8rem;
+	position: absolute;
+	right: 0;
+	color: #563C5C;
 
 }
 
 .le_theme {
-  color: #484545;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 500;
+	color: #484545;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 500;
 }

@@ -2,90 +2,86 @@
 
 
 .mhead {
-  color: #8e8989;
-  padding-right: 25px;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+	color: #8e8989;
+	padding-right: 25px;
+	width: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .mauthor,
 .mtime,
 .mdelete_btn,
 .mstatus {
-  margin-left: 10px;
-  /*  font-family: sans-serif; */
+	margin-left: 10px;
 }
 
 .mauthor {
-  /*   font-weight: 600;
-  font-family: 'Nunito Sans', sans-serif; */
-  font-size: 13px;
-  line-height: 13px;
+	font-size: 13px;
+	line-height: 13px;
 }
 
 .mtime {
-  /* font-style: italic; */
-  font-size: 11px;
-  line-height: 11px;
+	font-size: 11px;
+	line-height: 11px;
 }
 
 .mstatus {
-  font-family: 'Material Symbols Outlined';
-  font-size: 14px;
-  line-height: 14px;
-  font-variation-settings:
-    'FILL' 1,
-    'wght' 100,
-    'GRAD' 200,
-    'opsz' 20;
+	font-family: 'Material Symbols Outlined';
+	font-size: 14px;
+	line-height: 14px;
+	font-variation-settings:
+		'FILL' 1,
+		'wght' 100,
+		'GRAD' 200,
+		'opsz' 20;
 }
 
 .mdelete_btn {
-  cursor: pointer;
-  right: 7px;
-  position: absolute;
-  color: #696464;
-  border-bottom-left-radius: 6px;
-  right: 0;
-  font-size: 0.6em;
+	cursor: pointer;
+	right: 7px;
+	position: absolute;
+	color: #696464;
+	border-bottom-left-radius: 6px;
+	right: 0;
+	font-size: 0.6em;
 }
 
 .mdelete_btn:hover {
-  transition: font-size ease-in 100ms;
-  font-size: 0.7em;
+	transition: font-size ease-in 100ms;
+	font-size: 0.7em;
 }
 
 .mtext {
-  color: #594356;
-  word-break: break-all;
-  font-weight: 600;
-  font-family: 'Nunito Sans', sans-serif;
+	color: #594356;
+	word-break: break-all;
+	font-weight: 600;
+	font-family: 'Nunito Sans', sans-serif;
 }
 
 .mreceived,
 .msended {
-  width: fit-content;
-  flex-direction: column;
-  position: relative;
-  display: flex;
-  padding: 5px 30px 5px 10px;
+	width: fit-content;
+	flex-direction: column;
+	position: relative;
+	display: flex;
+	padding: 5px 30px 5px 10px;
 }
 
 .mreceived {
-  margin-left: auto;
-  border-radius: 10px;
-  border-bottom-right-radius: 0 !important;
-  background-color: #d6cca161;
-  text-align: right;
+	margin-left: auto;
+	border-radius: 10px;
+	border-bottom-right-radius: 0 !important;
+	background-color: #d6cca161;
+	text-align: right;
 }
 
 .msended {
-  align-items: flex-start;
-  border-radius: 10px;
-  border-bottom-left-radius: 0 !important;
-  background-color: #e4f0ef;
-  text-align: left;
+	align-items: flex-start;
+	border-radius: 10px;
+	border-bottom-left-radius: 0 !important;
+	background-color: #e4f0ef;
+	text-align: left;
 }

@@ -15,7 +15,7 @@ const getImage = async (officeId, imgId) => {/*
 const Img = ({ imgId, ...props }) => {
 	const { currentOffice } = useOffice();
 	let [src, setSrc] = useState("");
-	currentOffice ? console.log('SALAM currentofficeIZ', currentOffice) : false;
+	
 
 	useEffect(() => {
 		console.log('wearehereeeeeeeeeeee');

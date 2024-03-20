@@ -81,7 +81,7 @@ const FileExplorer = () => {
 
 			<div className={cl.list}>
 
-				<div className={cl.header}>	{/* шапка */}
+				<div className={cl.header}> шапка
 					<span className={cl.icon}> </span>
 					<span className={cl.filename}>filename</span>
 					<span className={cl.date}>date</span>

@@ -52,7 +52,7 @@ exports.files_list = (Office, User) => async (req, res, next) => {
 			})
 
 		console.log('controller: \b', 'path is:', dirpath);
-		let result = await openDir(dirpath, next).then(r => console.log('r', r))
+		let result = await openDir(dirpath, next)/* .then(r => console.log('r', r)) */
 		res.send(result)
 	} catch (err) { next(err) }
 

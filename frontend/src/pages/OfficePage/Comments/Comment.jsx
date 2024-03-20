@@ -8,8 +8,8 @@ const Comment = ({ id, text, created, author, postByCurrentUser }) => {
 	const { deleteComment } = useOffice();
 	const { date, time } = formatDate(created);
 
-	const root = [cl.Comment];
-	if (postByCurrentUser === true) root.push(cl.MyComment);
+	const root = [cl.comment];
+	if (postByCurrentUser === true) root.push(cl.postedByCurrentUser);
 
 	return (
 		<div
@@ -17,15 +17,21 @@ const Comment = ({ id, text, created, author, postByCurrentUser }) => {
 			onMouseOver={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}
 		>
-			<div className={cl.Comment__text}> {text} </div>
-			<div className={cl.Comment__date}> {date + " | " + time} </div>
+			<div className={cl.comment_details}>
+				<div className={cl.comment__author}>					{postByCurrentUser ? 'автор - Вы' : author}				</div>
+				<div className={cl.comment__date}> {date + " | " + time} </div>
 
-			{postByCurrentUser && hovered && (
-				<div className={cl.Comment__deleteBtn} onClick={() => deleteComment(id)}> Удалить </div>
-			)}
-			{postByCurrentUser === false && (
-				<div className={cl.Comment__author}>{author}</div>
-			)}
+				{postByCurrentUser && hovered && (
+					<div className={cl.comment__deleteBtn} onClick={() => deleteComment(id)}> Удалить </div>
+				)}
+			</div>
+
+
+			<div className={cl.comment_content}>
+				<div className={cl.comment__text}> {text} </div>
+			</div>
+
+
 		</div>
 	)
 }

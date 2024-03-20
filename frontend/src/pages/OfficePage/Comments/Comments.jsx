@@ -33,9 +33,10 @@ const Comments = () => {
 
 
 	return (
-		<>
+		<div className={cl.comments_mainwrap}>
 
-			<div className={cl.Comments}>
+
+			<div className={cl.comments}>
 				{officeComments.map(comment => {
 					return (
 						<Comment
@@ -49,17 +50,17 @@ const Comments = () => {
 				})}
 			</div>
 
-			<div className={cl.Comments_textarea} ref={newCommentInputRef} >
+			<div className={cl.comments_textarea} ref={newCommentInputRef} >
 				<textarea
 					placeholder="оставить комментарий"
-					className={cl.Comments_textarea}
+					className={cl.comments_textarea}
 					value={newComment}
 					onChange={e =>
 						setNewComment(e.target.value)
 					} />
 				<button
 					onClick={handleSubmit}
-					className={cl.Comments__submit}
+					className={cl.comments__submit}
 					disabled={
 						newComment
 							? false
@@ -67,8 +68,7 @@ const Comments = () => {
 					}	> OK
 				</button>
 			</div>
-
-		</>
+		</div>
 	)
 }
 

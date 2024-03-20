@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import classes from './Message.module.css';
-import formatDate from "../../../utils/formatDate";/*
-import { selectId } from "../../../../slices/sessionSlice"; */
+import formatDate from "../../../utils/formatDate";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMessage, deleteMessage } from "../../../slices/messagesSlice";
 

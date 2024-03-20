@@ -38,61 +38,71 @@ const Hardware = () => {
 	return (
 		<div className={cl.hw} ref={textAreaRef}>
 
-			<div className={cl.Options}>
-				<div
-					onClick={() => setOriginal(
-						{
-							info: officeHw.info,
-							id: currentOffice
-						})}
-					id={currentOffice}
-					className={
-						(original.id === currentOffice)
-							? cl.Options__item_current
-							: cl.Options__item
-					}>
-					Офис
+			<div className={cl.hw_header}>
+
+				<div className={cl.hw_header__options}>
+					<div
+						onClick={() => setOriginal(
+							{
+								info: officeHw.info,
+								id: currentOffice
+							})}
+						id={currentOffice}
+						className={
+							(original.id === currentOffice)
+								? cl.hw_header__options_item_current
+								: cl.hw_header__options_item
+						}>
+						Офис
+					</div>
+					{usersHw.map(user => {
+						return (
+							<div
+								onClick={() => setOriginal(
+									{
+										info: user.hardware.info,
+										id: user._id
+									})}
+								className={
+									original.id === user._id
+										? cl.hw_header__options_item_current
+										: cl.hw_header__options_item
+								}
+								id={user._id}
+								key={user._id}>
+								{user.login}
+							</div>
+						)
+					})}
 				</div>
 
-				{usersHw.map(user => {
-					return (
-						<div
-							onClick={() => setOriginal(
-								{
-									info: user.hardware.info,
-									id: user._id
-								})}
-							className={
-								original.id === user._id
-									? cl.Options__item_current
-									: cl.Options__item
-							}
-							id={user._id}
-							key={user._id}>
-							{user.login}
-						</div>
-					)
-				})}
-			</div>
+				<div className={cl.hw_header__controls}>
+					<div className={cl.hw_header__controls_button}>
 
-			<div className={cl.hw_info}  >{
-				onEdit
-					? <textarea
-						autoFocus
-						value={updatedValue}
-						onChange={(e) => { setUpdatedValue(e.target.value) }}
-						className={cl.hw_textarea} />
-					: <div onClick={() => setOnEdit(true)}>{original.info}</div>}
-			</div>
-
-			<div className={cl.edit_btns}>
-				<div className='msymb_icon'
-					onClick={() => setOnEdit(true)}
-				>	edit_note
+					</div>
 				</div>
-				{onEdit
-					? <div className='msymb_icon' onClick={update}>	done	</div>
-					: false}
+			</div>
+
+			<div className={cl.hw_body}>
+				<div className={cl.hw_info}  >{
+					onEdit
+						? <textarea
+							autoFocus
+							value={updatedValue}
+							onChange={(e) => { setUpdatedValue(e.target.value) }}
+							className={cl.hw_textarea} />
+						: <div onClick={() => setOnEdit(true)}>{original.info}</div>}
+				</div>
+
+				<div className={cl.edit_btns}>
+					<div className='msymb_icon'
+						onClick={() => setOnEdit(true)}
+					>	edit_note
+					</div>
+					{onEdit
+						? <div className='msymb_icon' onClick={update}>	done	</div>
+						: false}
+				</div>
 			</div>
 		</div>
 	)

@@ -6,7 +6,7 @@ import MyFile from "./MyFile";
 import Loader from "../../../components/Loader/Loader";
 import { filesStatus, selectFiles, selectFolders } from "../../../slices/files";
 import { useOffice } from "../../../hooks/useOffice";
-import { users } from "../../../slices/officeSlice";
+import { selectUserById, selectUsers } from "../../../slices/officeSlice";
 import { useParams } from "react-router-dom";
 const { REACT_APP_BASE_URL } = process.env
 
@@ -34,19 +34,17 @@ const FileExplorer = () => {
 	const player = useRef();
 	const [audioSrc, setAudioSrc] = useState();
 	const { watchDir, currentOffice } = useOffice();
-
+	const users = useSelector(selectUsers);
 	/* фильтр по юзеру */
-
-	const officeUsers = useSelector(users);
-	const [currentUser, setCurrentUser] = useState('64f2eef25b3db9b3613edd6d')
+	const [currentUser, setCurrentUser] = useState('')
 
 	useEffect(() => {
 		setNowPlaying(''); setCurrentPath(''); controller.abort();
 	}, [officeId])
 
 	useEffect(() => {
-		if (currentOffice) watchDir(currentUser, currentPath);
-	}, [currentOffice, currentUser, currentPath])
+		if (currentOffice) watchDir(currentUser._id, currentPath);
+	}, [currentOffice, currentUser._id, currentPath])
 
 
 	const play = (fileName) => {
@@ -57,23 +55,27 @@ const FileExplorer = () => {
 		}
 	};
 
+	const pickAnotherUser = e => {
+		const { login, _id } = users.find(u => u._id === e.target.id)
+		setCurrentUser({ login, _id });
+	}
 
 	return (
 		<div className={cl.explorer}>
-
+			{currentUser?.login}
 			<div className={cl.explorer_header}>
-				{officeUsers.map(user => {
+				{users.map(user => {
 					return (
 						<div
-							onClick={() => setCurrentUser(user._id)}
+							onClick={pickAnotherUser}
 							className={
-								currentUser === user._id
+								currentUser?._id === user._id
 									? cl.explorer_header__options_item_current
 									: cl.explorer_header__options_item
 							}
 							id={user._id}
 							key={user._id}>
-							{user.login}{user._id}
+							{user.login}
 						</div>
 					)
 				})}

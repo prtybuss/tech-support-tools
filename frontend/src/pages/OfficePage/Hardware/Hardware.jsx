@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import cl from './Hardware.module.css'
 import { useSelector } from "react-redux";
-import { users, hardware } from "../../../slices/officeSlice";
+import { selectUsers, hardware } from "../../../slices/officeSlice";
 import { useOffice } from "../../../hooks/useOffice";
 
 const Hardware = () => {
 	const officeHw = useSelector(hardware)
-	const usersHw = useSelector(users)
+	const usersHw = useSelector(selectUsers)
 	const { updateInfo, currentOffice } = useOffice();
 	const textAreaRef = useRef(null);
 	const [onEdit, setOnEdit] = useState(false);

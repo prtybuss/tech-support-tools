@@ -126,7 +126,14 @@ export const tags = (state) => state.office.tags;
 export const comments = (state) => state.office.comments;
 export const links = (state) => state.office.links;
 export const hardware = (state) => state.office.hardware;
-export const users = (state) => state.office.users;
+export const selectUsers = (state) => state.office.users;
+export const selectUserId = (state, userId) => userId;
+export const selectUserById = createSelector(
+	[selectUsers, selectUserId],
+	(users, userId) => {
+		users.find(user => user._id === userId)
+	}
+)
 export const imgs = (state) => state.office.imgs
 export const imgsIds = createSelector(imgs, imgs => imgs.map(img => img._id));
 

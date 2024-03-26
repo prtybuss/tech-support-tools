@@ -42,6 +42,7 @@ exports.audio_get = (Office, User) => async (req, res, next) => {
 }
 
 exports.files_list = (Office, User) => async (req, res, next) => {
+	console.log('req.params', req.params);
 	try {
 		const dirpath = (process.env.NODE_ENV == "development")
 			? path.join(`\\\\${process.env.FSHOST_FORDEV}\\arch-1\\`, (req.params.subfolder ?? '\\'))

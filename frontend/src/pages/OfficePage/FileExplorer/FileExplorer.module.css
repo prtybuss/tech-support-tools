@@ -1,19 +1,58 @@
 /* -------1-------- */
-.FileExplorer {
-	position: relative;
-	background: #f9f7ed;
-	padding: 20px 7px 15px 7px;
+.explorer {
 	position: relative;
 	height: max-content;
-	outline: 2px dashed #563c5c;
 	display: flex;
 	flex-direction: column;
-	margin: 5px;
-	margin-top: 20px;
+	/* margin: 5px;
+	margin-top: 20px; */
+}
+
+.explorer_header {
+	/* font-size: 12px; */
+	min-height: 30px;
+	display: flex;
+	color: var(--color-darkgreen);
+	position: relative;
+	position: relative;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.explorer_header__options {
+	grid-column-gap: 5px;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.explorer_header__options_item {
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	height: min-content;
+	/* 
+	background: rgb(255 255 255 / 89%); */
+	color: #484545;
+	text-decoration: none;
+	position: relative;
+	padding: 3px 15px;
+	cursor: pointer;
+}
+
+.explorer_header__options_item:hover {
+	background: #484545;
+	color: rgb(255 255 255 / 89%);
+	transition: background-color ease-out 400ms;
+}
+
+.explorer_header__options_item_current {
+	background: #90b0cb57;
 }
 
 /* -------2-------- */
 .list {
+	outline: 2px solid #563c5c;
+	background: #f9f7ed;
+	padding: 20px 7px 15px 7px;
 	grid-row-gap: 3px;
 	row-gap: 3px;
 	height: 350px;

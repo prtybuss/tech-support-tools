@@ -4,8 +4,10 @@ import { useOffice } from "../../hooks/useOffice";
 const { REACT_APP_BASE_URL } = process.env
 
 const getImage = async (officeId, imgId) => {
-	let resp = await axios.get(`${REACT_APP_BASE_URL}/api/office/${officeId}/img/${imgId}`, { responseType: 'blob' });
-	return URL.createObjectURL(resp.data);
+	try {
+		let resp = await axios.get(`${REACT_APP_BASE_URL}/api/office/${officeId}/img/${imgId}`, { responseType: 'blob' });
+		return URL.createObjectURL(resp.data);
+	} catch { (error) => console.log(Error.message) }
 };
 
 

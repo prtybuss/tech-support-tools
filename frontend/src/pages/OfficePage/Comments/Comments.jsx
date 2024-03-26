@@ -60,12 +60,12 @@ const Comments = () => {
 					} />
 				<button
 					onClick={handleSubmit}
-					className={cl.comments__submit}
+					className='msymb_icon'
 					disabled={
 						newComment
 							? false
 							: true
-					}	> OK
+					}	> done
 				</button>
 			</div>
 		</div>

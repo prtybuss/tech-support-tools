@@ -4,16 +4,21 @@ const openDir = require('../utils/openDir');
 const AppError = require('../utils/appError');
 
 exports.img_get = (Office) => async (req, res, next) => {
-	/* console.log('req for img', req.params); */
-	const office = await Office.findById(req.params.officeId);
-	const img = await office.imgs.id(req.params.imgId);
-	const dir = path.join(__dirname, img.path);
-	res.status(200).download(img.name, { root: dir }, function (err) {
-		if (!err) return; // file sent
-		if (err.status !== 404) return next(err); // non-404 error
-		res.statusCode = 404;
-		res.send('Cant find that file, sorry!');
-	});
+	try {
+		const office = await Office.findById(req.params.officeId);
+		const img = await office.imgs.id(req.params.imgId);
+		const dir = await path.join(__dirname, img.path);
+		if (!img) {
+			return next(
+				new AppError(401, "fail", "img wasnt found"));
+		}
+		res.status(200).download(img.name, { root: dir }, function (err) {
+			if (!err) return; // file sent
+			if (err.status !== 404) return next(err); // non-404 error
+			res.statusCode = 404;
+			res.send('Cant find that file, sorry!');
+		});
+	} catch (err) { next(err) }
 }
 exports.img_post = (Office) => async (req, res, next) => {
 	const office = await Office.findById(req.params.officeId);
@@ -51,7 +56,7 @@ exports.files_list = (Office, User) => async (req, res, next) => {
 				return path.join(`${office.fileServerIp}${soundDir}\\`, subfolder);
 			})
 
-		console.log('controller: \b', 'path is:', dirpath);
+		/* 	console.log('controller: \b', 'path is:', dirpath); */
 		let result = await openDir(dirpath, next)/* .then(r => console.log('r', r)) */
 		res.send(result)
 	} catch (err) { next(err) }

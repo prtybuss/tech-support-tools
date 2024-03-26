@@ -1,14 +1,17 @@
 .Loader {
-	--b: 10px;
+
+	--b: 2px;
 	/* border thickness */
-	--n: 10;
+	--n: 4;
 	/* number of dashes*/
-	--g: 10deg;
+	--g: 18deg;
 	/* gap between dashes*/
 	--c: rgb(8, 26, 29);
 	/* the color */
 
-	width: 10%;
+
+
+	width: 7%;
 	/* size */
 	aspect-ratio: 1;
 	border-radius: 50%;
@@ -29,8 +32,8 @@
 	animation: load 1s infinite steps(var(--n));
 
 
-	margin-top: auto;
-	margin-left: auto;
+	/* 	margin-top: auto;
+	margin-left: auto; */
 }
 
 @keyframes load {

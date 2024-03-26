@@ -11,13 +11,13 @@ import Comments from "./Comments/Comments";
 
 
 const LeftSection = () => {
-	const dataLoadStatus = useSelector(dataStatus);
+	const loadStatus = useSelector(dataStatus);
 
 
 	return (
 		<>
-			{(dataLoadStatus === 'loading') && <Loader />}
-			{(dataLoadStatus === 'succeeded') &&
+			{(loadStatus === 'loading') && <Loader />}
+			{(loadStatus === 'succeeded') &&
 				<div id='LeftSection' className="LeftSection">
 					<Info />
 					<TagsProvider>	<Tags />	</TagsProvider>

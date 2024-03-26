@@ -2,34 +2,40 @@ import React, { useEffect, useMemo, useState } from "react";
 import cl from "./Gallery.module.css"
 import { useSelector } from "react-redux";
 import Lightbox from "../../../components/UI/Lightbox";
+import Loader from "../../../components/Loader/Loader"
 import MyModal from "../../../components/UI/modal/MyModal";
 import ImgUploadDialog from "./ImgUploadDialog";
 import Img from "../../../components/UI/img/Img";
-import { imgs, imgsIds } from "../../../slices/officeSlice";
+import { dataStatus, imgsIds } from "../../../slices/officeSlice";
 
 
 const Gallery = () => {
-	const officeImgs = useSelector(imgs);
+	const loadStatus = useSelector(dataStatus);
 	const imagesIds = useSelector(imgsIds);
-	const [stack, setStack] = useState(imagesIds);
-	const [visibleImages, setVisibleImages] = useState(imagesIds.slice(0, 4));
+	const [stack, setStack] = useState([]);
+	const [visibleImages, setVisibleImages] = useState([]);
 	const [modal, setModal] = useState(false);
 	const [fileInputDialog, setFileInputDialog] = useState(false)
 	const [imgOpen, setImgOpen] = useState();
 	const [expanded, setExpanded] = useState(false)
 
 	useEffect(() => {
-		const currentPreview = officeImgs.map(img => img._id);
-		setStack(imagesIds);
-		setVisibleImages(stack.slice(0, 4))
-	}, [imagesIds, stack]
+		imagesIds ? setStack(imagesIds) : false;
+		/* 	setVisibleImages(stack.slice(0, 4)); */
+	}, [imagesIds])
+
+	useEffect(() => {
+		/* const currentPreview = imagesIds.map(img => img._id);  */
+		(imagesIds && stack) ? setVisibleImages(stack.slice(0, 4)) : false;
+	}, [/* imagesIds,  */stack]
 	);
 
 	const forward = () => {
 		if (imagesIds.length <= 4) return;
 		let arr = [...stack];
 		let x = arr.shift();
-		arr.push(arr.shift());
+		arr.push(x);
+		console.log('forward, stack:', stack)
 		setStack(arr);
 	}
 	const back = () => {
@@ -38,11 +44,12 @@ const Gallery = () => {
 		arr = [...stack];
 		let x = arr.pop();
 		arr.unshift(x);
+		console.log('back,stack:', stack)
 		setStack(arr);
 	}
 	const showMore = () => {
 		setExpanded(true);
-		setVisibleImages(imagesIds);
+		setVisibleImages(stack);
 	}
 	const collapse = () => {
 		setExpanded(false);
@@ -67,9 +74,11 @@ const Gallery = () => {
 
 
 	return (
-		<><div className={cl.gallery} ><h1>Хуй</h1>
-			<div className={cl.mansory}>
-				{gall}</div>
+		<><div className={cl.gallery} >
+
+			{(loadStatus === 'loading') && <Loader />}
+			{(loadStatus === 'succeeded') && <div className={cl.mansory}>
+				{gall} </div>}
 
 
 

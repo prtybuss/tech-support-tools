@@ -36,6 +36,7 @@ const FileExplorer = () => {
 	const { watchDir, currentOffice } = useOffice();
 
 	/* фильтр по юзеру */
+
 	const officeUsers = useSelector(users);
 	const [currentUser, setCurrentUser] = useState('64f2eef25b3db9b3613edd6d')
 
@@ -58,30 +59,29 @@ const FileExplorer = () => {
 
 
 	return (
-		<div className={cl.FileExplorer}>
+		<div className={cl.explorer}>
 
-
-			{officeUsers.map(user => {
-
-				return (
-
-					<div
-						onClick={() => setCurrentUser(user._id)}
-						className={
-							currentUser === user._id
-								? cl.Options__item_current
-								: cl.Options__item
-						}
-						id={user._id}
-						key={user._id}>
-						{user.login}
-					</div>
-				)
-			})}
+			<div className={cl.explorer_header}>
+				{officeUsers.map(user => {
+					return (
+						<div
+							onClick={() => setCurrentUser(user._id)}
+							className={
+								currentUser === user._id
+									? cl.explorer_header__options_item_current
+									: cl.explorer_header__options_item
+							}
+							id={user._id}
+							key={user._id}>
+							{user.login}{user._id}
+						</div>
+					)
+				})}
+			</div>
 
 			<div className={cl.list}>
 
-				<div className={cl.header}> шапка
+				<div className={cl.header}>
 					<span className={cl.icon}> </span>
 					<span className={cl.filename}>filename</span>
 					<span className={cl.date}>date</span>

@@ -32,13 +32,25 @@
 	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24
 }
 
-.msymb_icon :hover {
-	cursor: pointer;
+.msymb_icon,
+button {
+	background: none;
+	border: none;
+}
 
+.msymb_icon:hover {
+	cursor: pointer;
 }
 
 svg {
 	fill: rgba(0, 0, 0, 0.2) !important;
+}
+
+.centred_content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 30px;
 }
 
 .button-modal {
@@ -157,12 +169,10 @@ body {
 
 /* -------------LEFT SECTION------------- */
 #LeftSection {
-	row-gap: 0px;
 	display: flex;
 	flex-direction: column;
-	/* margin-left: 1vw; */
+	/* margin-left: 1vw;border-radius: 7px; */
 	grid-area: LeftSection;
-	border-radius: 7px;
 	outline: 1px solid #dceeed;
 }
 
@@ -219,7 +229,7 @@ body {
 
 /* -------------RIGHT SECTION------------- */
 #RightSection {
-
+	position: relative;
 	grid-area: RightSection;
 	margin: 5px;
 	display: flex;

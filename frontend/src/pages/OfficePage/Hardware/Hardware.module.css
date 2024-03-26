@@ -59,7 +59,6 @@
 	cursor: pointer;
 }
 
-
 .hw_header__controls {
 	display: flex;
 	flex-direction: row;
@@ -85,17 +84,12 @@
 }
 
 .hw_info {
-	grid-area: info;
-	grid-row: 2/3;
-	grid-column: 1/2;
+	width: 100%;
 }
 
 .hw_textarea {
-	grid-area: info;
-	grid-row: 2/3;
-	grid-column: 1/2;
-	background-color: #f9f7ed;
 	width: -webkit-fill-available;
+	background: none;
 	resize: none;
 	font-size: 0.9em;
 	font-family: monospace;
@@ -109,6 +103,11 @@
 }
 
 .edit_btns {
-	grid-area: edit;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+}
 
+.edit_btns>div {
+	padding: 3px;
 }

@@ -9,39 +9,39 @@ const OfficeContext = createContext();
 export const OfficeProvider = ({ children }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const [currentOffice, setCurrentOffice] = useState('');
+	const [currentOfficeId, setcurrentOfficeId] = useState('');
 	const [dataLoading, setDataLoading] = useState(false);
 
 
 
 	const getOfficeDetails = async (officeId) => {
-		if (officeId === currentOffice) return;
+		if (officeId === currentOfficeId) return;
 		setDataLoading(true);
 		dispatch(getOfficeData(officeId));
-		setCurrentOffice(officeId);
+		setcurrentOfficeId(officeId);
 		setDataLoading(false);
 	};
 
 	const postNewComment = (comment) =>
-		dispatch(postComment({ officeId: currentOffice, comment }));
+		dispatch(postComment({ officeId: currentOfficeId, comment }));
 
 	const deleteComment = (commentId) =>
-		dispatch(removeComment({ officeId: currentOffice, commentId }));
+		dispatch(removeComment({ officeId: currentOfficeId, commentId }));
 
 	const postNewLink = (link) =>
-		dispatch(postLink({ officeId: currentOffice, link }))
+		dispatch(postLink({ officeId: currentOfficeId, link }))
 
 	const removeLinkWithId = (linkId) =>
-		dispatch(removeLink({ officeId: currentOffice, linkId }));
+		dispatch(removeLink({ officeId: currentOfficeId, linkId }));
 
 	const updateHwInfo = (update) => {
 		console.log({ ...update });
-		dispatch(updateOfficeInfo({ officeId: currentOffice, update }))
+		dispatch(updateOfficeInfo({ officeId: currentOfficeId, update }))
 	}
 
 	const readDir = async (userId, subfolder = '') => {
 		try {
-			dispatch(getDirectoryContent({ officeId: currentOffice, userId, subfolder }))
+			dispatch(getDirectoryContent({ officeId: currentOfficeId, userId, subfolder }))
 		} catch (error) {
 			console.error(error);
 			process.exit(1);
@@ -50,7 +50,7 @@ export const OfficeProvider = ({ children }) => {
 	}
 
 	const value = {
-		currentOffice, dataLoading,
+		currentOfficeId, dataLoading,
 		getOfficeDetails: getOfficeDetails,
 		postComment: postNewComment,
 		deleteComment: deleteComment,

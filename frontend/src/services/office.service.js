@@ -27,7 +27,7 @@ class office {
 		return axios.post(`${REACT_APP_BASE_URL}/api/office/${officeId}`, update);
 	}
 
-	getDirContent(officeId, userId, subfolder) {
+	getDirContent({officeId, userId, subfolder}) {
 		return axios.get(`${REACT_APP_BASE_URL}/api/office/${officeId}/files/${userId}/${subfolder}`);
 	}
 

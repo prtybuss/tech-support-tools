@@ -16,8 +16,21 @@ const Login = () => {
 		<div className={cl.login} >
 			<div className={cl.loginHeader}> Авторизация </div>
 
-			<input className={cl.text_input} type='text' value={login} onChange={e => setlogin(e.target.value)} placeholder='Имя' autoFocus />
-			<input className={cl.text_input} type='password' value={password} onChange={e => setpassword(e.target.value)} placeholder='Пароль' />
+			<input 
+			className={cl.text_input} 
+			type='text' 
+			value={login} 
+			onChange={e => setlogin(e.target.value)} 
+			placeholder='Имя' 
+			autoFocus 
+			/>
+
+			<input 
+			className={cl.text_input} 
+			type='password' 
+			value={password} 
+			onChange={e => setpassword(e.target.value)} 
+			placeholder='Пароль' />
 
 			<button type="button" className='button-modal'
 				disabled={!(login || password)}

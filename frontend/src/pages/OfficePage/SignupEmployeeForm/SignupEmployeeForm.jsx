@@ -31,63 +31,74 @@ const SignupEmployeeForm = ({ setVisible }) => {
   };
 
   return (
-    <div className={cl.SignupEmployeeForm}>
-      <div className={cl.newEmployeeSignupForm__header}>
-        Добавить нового сотрудника
+    <div className={cl.form}>
+      <span className={cl.form_header}>Добавить нового сотрудника</span>
+
+      <div className={cl.form_field}>
+        <span className={cl.form_field__label}>Логин</span>
+        <input
+          className={cl.form_input}
+          type="text"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
+          placeholder="Логин"
+          autoFocus
+        />
       </div>
 
-      <input
-        className={cl.form_input}
-        type="text"
-        value={login}
-        onChange={(e) => setLogin(e.target.value)}
-        placeholder="Логин"
-        autoFocus
-      />
+      <div className={cl.form_field}>
+        <span className={cl.form_field__label}>Пароль</span>
+        <input
+          className={cl.form_input}
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Пароль"
+        />
+      </div>
 
-      <input
-        className={cl.form_input}
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Пароль"
-      />
+      <div className={cl.form_field}>
+        <span className={cl.form_field__label}>Должность</span>
+        <input
+          className={cl.form_input}
+          type="text"
+          value={jobTitle}
+          onChange={(e) => setJobTitle(e.target.value)}
+          placeholder="Должность"
+        />
+      </div>
 
-      <input
-        className={cl.form_input}
-        type="text"
-        value={jobTitle}
-        onChange={(e) => setJobTitle(e.target.value)}
-        placeholder="Должность"
-      />
+      <div className={cl.form_field}>
+        <span className={cl.form_field__label}>Папка</span>
+        <input
+          className={cl.form_input}
+          type="text"
+          value={soundDir}
+          onChange={(e) => setSoundDir(e.target.value)}
+          placeholder="Директория для хранения прослушки"
+        />
+      </div>
 
-      <input
-        className={cl.form_input}
-        type="text"
-        value={soundDir}
-        onChange={(e) => setSoundDir(e.target.value)}
-        placeholder="Директория для хранения прослушки"
-      />
+      <div className={cl.form_field}>
+        <span className={cl.form_field__label}>Оборудование</span>
+        <textarea
+          className={cl.form_textarea}
+          value={pcAndPeripheralsInfo}
+          onChange={(e) => setPcAndPeripheralsInfo(e.target.value)}
+          placeholder="Информация об оборудовании рабочего места сотрудника"
+        />
+      </div>
 
-      <textarea
-        className={cl.form_textarea}
-        value={pcAndPeripheralsInfo}
-        onChange={(e) => setPcAndPeripheralsInfo(e.target.value)}
-        placeholder="Информация об оборудовании рабочего места сотрудника"
-      />
-
-      {
-        <button
-          type="button"
-          className={cl.form_submit__button}
-          disabled={
-            !(login || password || jobTitle || soundDir || pcAndPeripheralsInfo)
-          }
-          onClick={clickOnSubmitHandler}
-        >
-          Ок
-        </button>
-      }
+      <button
+        type="button"
+        className={cl.form_submit__button}
+        disabled={
+          !(login || password || jobTitle || soundDir || pcAndPeripheralsInfo)
+        }
+        onClick={clickOnSubmitHandler}
+      >
+        Ок
+      </button>
     </div>
   );
 };

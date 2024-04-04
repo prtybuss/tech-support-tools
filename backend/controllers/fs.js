@@ -44,19 +44,20 @@ exports.audio_get = (Office, User) => async (req, res, next) => {
 exports.files_list = (Office, User) => async (req, res, next) => {
 	console.log('req.params', req.params);
 	try {
-		const dirpath = (process.env.NODE_ENV == "development")
-			? path.join(`\\\\${process.env.FSHOST_FORDEV}\\arch-1\\`, (req.params.subfolder ?? '\\'))
-			: (async () => {
-				const { soundDir } = await User.findById(req.params.userId);
-				if (!soundDir) {
-					return next(
-						new AppError(401, "fail", "sound dir does not configurated for this userId"));
-				}
-				const office = await Office.findById(req.params.officeId);
-				const subfolder = req.params.subfolder ?? '';
-				return path.join(`${office.fileServerIp}${soundDir}\\`, subfolder);
-			})
-
+		/* 	(process.env.NODE_ENV == "development")
+				? path.join(`\\\\${process.env.FSHOST_FORDEV}\\arch-1\\`, (req.params.subfolder ?? '\\'))
+		(async () => { */
+		const { soundDir } = await User.findById(req.params.userId);
+		console.log('sss', soundDir);
+		if (!soundDir) {
+			return next(
+				new AppError(401, "fail", "sound dir does not configurated for this userId"));
+		}
+		const office = await Office.findById(req.params.officeId);
+		const subfolder = req.params.subfolder ?? '';
+		const dirpath = path.join(`${office.fileServerIp}${soundDir}\\`, subfolder);
+		/* 	}) */
+		console.log('dirpath', dirpath);
 		/* 	console.log('controller: \b', 'path is:', dirpath); */
 		let result = await openDir(dirpath, next)/* .then(r => console.log('r', r)) */
 		res.send(result)

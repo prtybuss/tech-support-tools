@@ -1,5 +1,5 @@
 import axios from "axios";
-const  {REACT_APP_BASE_URL} = process.env
+const { REACT_APP_BASE_URL } = process.env
 
 class office {
 
@@ -27,7 +27,8 @@ class office {
 		return axios.post(`${REACT_APP_BASE_URL}/api/office/${officeId}`, update);
 	}
 
-	getDirContent(officeId, userId, subfolder) {
+	getDirContent({ officeId, userId, subfolder }) {
+		console.log('officeId, userId, subfolder', officeId, userId, subfolder);
 		return axios.get(`${REACT_APP_BASE_URL}/api/office/${officeId}/files/${userId}/${subfolder}`);
 	}
 

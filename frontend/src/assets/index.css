@@ -173,7 +173,7 @@ body {
 	flex-direction: column;
 	/* margin-left: 1vw;border-radius: 7px; */
 	grid-area: LeftSection;
-	outline: 1px solid #dceeed;
+	outline: 2px solid #3b4f4e;
 }
 
 .InfoBlock {
@@ -220,8 +220,8 @@ body {
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: center; */
-
-	background: #B7D7D5;
+/* 
+	background: #B7D7D5; */
 	border-radius: 3px;
 	padding: 5px 15px;
 

@@ -9,7 +9,7 @@ exports.office_details = (Office, User) => async (req, res, next) => {
 			path: "comments", populate: { path: "author", model: User, select: 'login' }
 		},
 		{
-			path: "users", model: User, select: 'login hardware'
+			path: "users", model: User, select: 'login hardware soundDir'
 		}
 	]);
 	res.send(office);

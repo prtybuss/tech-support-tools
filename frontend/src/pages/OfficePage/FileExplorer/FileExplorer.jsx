@@ -36,15 +36,15 @@ const FileExplorer = () => {
 	const { watchDir, currentOffice } = useOffice();
 	const users = useSelector(selectUsers);
 	/* фильтр по юзеру */
-	const [currentUser, setCurrentUser] = useState('')
+	const [currentUser, setCurrentUser] = useState(users?.[0])
 
 	useEffect(() => {
 		setNowPlaying(''); setCurrentPath(''); controller.abort();
 	}, [officeId])
 
 	useEffect(() => {
-		if (currentOffice) watchDir(currentUser._id, currentPath);
-	}, [currentOffice, currentUser._id, currentPath])
+		if (currentOffice) watchDir({ userId: currentUser?._id, subfolder: (currentPath ?? '') });
+	}, [/* currentOffice, */ currentUser?._id, currentPath])
 
 
 	const play = (fileName) => {
@@ -55,9 +55,10 @@ const FileExplorer = () => {
 		}
 	};
 
-	const pickAnotherUser = e => {
-		const { login, _id } = users.find(u => u._id === e.target.id)
-		setCurrentUser({ login, _id });
+	const pickAnotherUser = (user) => {/* 
+		const { login, _id } = users.find(u => u._id === e.target.id) */
+		console.log('user', user._id);
+		setCurrentUser(user);
 	}
 
 	return (
@@ -67,7 +68,7 @@ const FileExplorer = () => {
 				{users.map(user => {
 					return (
 						<div
-							onClick={pickAnotherUser}
+							onClick={() => pickAnotherUser(user)}
 							className={
 								currentUser?._id === user._id
 									? cl.explorer_header__options_item_current

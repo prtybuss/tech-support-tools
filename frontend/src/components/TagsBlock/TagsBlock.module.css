@@ -12,7 +12,7 @@
 .tagsblock_item {
 	display: inline-flex;
 	font-family: 'Roboto Condensed', sans-serif;
-	padding: 3px 15px;
+	padding: 2px 15px;
 	background: var(----color-beigE);
 	font-size: 12px;
 	border-radius: 6px;

@@ -39,7 +39,8 @@ export const OfficeProvider = ({ children }) => {
 		dispatch(updateOfficeInfo({ officeId: currentOffice, update }))
 	}
 
-	const readDir = async (userId, subfolder = '') => {
+	const readDir = async ({ userId, subfolder }) => {
+		console.log('userId', userId, subfolder, 'subfolder');
 		try {
 			dispatch(getDirectoryContent({ officeId: currentOffice, userId, subfolder }))
 		} catch (error) {

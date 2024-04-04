@@ -9,10 +9,10 @@ const initialState = {
 };
 
 export const getDirectoryContent = createAsyncThunk('files/getDirContent', async ({ officeId, userId, subfolder }) => {
-	
+	console.log('SLICE:: officeId, userId, subfolder ', officeId, userId, subfolder);
 	try {
-		const res = await office.getDirContent(officeId, userId, subfolder);
-		store.dispatch(filesLoaded(res.data))
+		const res = await office.getDirContent({ officeId, userId, subfolder });
+		store.dispatch(filesLoaded(await res.data))
 		return res.data;
 	} catch (error) { console.error(error); }
 })

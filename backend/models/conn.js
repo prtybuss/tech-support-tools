@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-dotenv.config({
-    path: './config.env'
-});
+const url = require('../config/db.config.js')
 
-const conn = mongoose.createConnection(process.env.DB);
+
+const conn = mongoose.createConnection(url);
 
 module.exports = conn;
 

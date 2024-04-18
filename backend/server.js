@@ -1,23 +1,13 @@
 
+require("dotenv").config();
 const mongoose = require('mongoose');
 const app = require('./app');
 
-/* const dotenv = require('dotenv');
-dotenv.config({
-	path: './config.env'
-}); 
-var corsOptions = {
-	origin: process.env.CLIENT_ORIGIN || "http://localhost:8081"
-};
-
-app.use(cors(corsOptions));*/
 
 
-
-
+console.log('mode:', process.env.NODE_ENV);
 
 const start = async () => {
-	console.log('mode:', process.env.NODE_ENV);
 	try {
 		await mongoose.connect(require('./config/db.config'));
 

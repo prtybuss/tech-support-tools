@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const dotenv = require('dotenv');
+/* const dotenv = require('dotenv');
 dotenv.config({
-    path: './config.env'
-});
+	path: './config.env'
+}); */
 
 const imgSchema = new Schema({
 	name: String,

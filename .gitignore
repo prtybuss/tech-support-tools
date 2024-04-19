@@ -1,8 +1,5 @@
 frontend/node_modules
-frontend/build
 backend/node_modules
-public
-frontend/public/favicon.ico
-frontend/public/robots.txt
-.env
+public/
+frontend/build
 .vscode

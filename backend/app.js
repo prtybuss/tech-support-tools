@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
 const userRoutes = require('./routes/userRoutes');
 const AppError = require('./utils/appError');
 const globalErrHandler = require('./controllers/error');
 const app = express();
-
+app.use(morgan('tiny'));
 app.use(cors({
 	origin: process.env.CLIENT_ORIGIN || "http://localhost:8081"
 }));

@@ -30,6 +30,7 @@ exports.signin = async (req, res, next) => {
 			return next(new AppError(404, "fail", "Please provide login or password"),
 				req, res, next,);
 		}
+	console.log('	login, password');
 		// 2) check if user exist and password is correct
 		const user = await User.findOne({ login, })/* .select("+password") */;
 

@@ -1,24 +1,17 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
-    container_name: frontend
-    ports:
-      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
-    stdin_open: true
+  proxy:
+    image: nginx:stable-alpine
+    container_name: proxy
+    restart: unless-stopped
     volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
-    restart: always
+      - /usr/share/nginx/html
+      - "./nginx.conf:/etc/nginx/nginx.conf:delegated"
+    ports:
+      - "80:80"
     networks:
-      - frontend
-    depends_on:
-      - backend
-
+      - default
   mongodb:
     image: mongo:4.2.0
     container_name: mongodb
@@ -27,44 +20,59 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
-    ports:
-      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
+    expose:
+      - $MONGODB_DOCKER_PORT
     volumes:
       - db:/data/db
     networks:
-      - backend
-
+      - default
   backend:
+    container_name: backend
     depends_on:
       - mongodb
     build:
       context: ./backend
-    container_name: backend
     volumes:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
     restart: always
     env_file: ./.env
-    ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    expose:
+      - $NODE_DOCKER_PORT
+    stdin_open: true
     environment:
-      - DB_HOST=mongodb
-      - DB_USER=$MONGODB_USER
-      - DB_PASSWORD=$MONGODB_PASSWORD
-      - DB_NAME=$MONGODB_DATABASE
-      - DB_PORT=$MONGODB_DOCKER_PORT
-      - CLIENT_ORIGIN=$CLIENT_ORIGIN
-      - API_SECRET=$API_SECRET
-      - JWT_EXPIRES_IN=$JWT_EXPIRES_IN
-      - FSHOSTADRESS=$FSHOSTADRESS
-      - FSHOST_FORDEV=$FSHOST_FORDEV
+      DB_HOST: mongodb
+      DB_USER: $MONGODB_USER
+      DB_PASSWORD: $MONGODB_PASSWORD
+      DB_NAME: $MONGODB_DATABASE
+      DB_PORT: $MONGODB_DOCKER_PORT
+      CLIENT_ORIGIN: $CLIENT_ORIGIN
+      API_SECRET: $API_SECRET
+      JWT_EXPIRES_IN: $JWT_EXPIRES_IN
+      FSHOSTADRESS: $FSHOSTADRESS
+      FSHOST_FORDEV: $FSHOST_FORDEV
     networks:
-      - backend
-      - frontend
+      - default
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_BASE_URL=$REACT_APP_API_BASE_URL
+    restart: unless-stopped
+    networks:
+      - default
+    expose:
+      - $REACT_DOCKER_PORT
+    stdin_open: true
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/share/nginx/html
+    
 
 networks:
-  backend:
-  frontend:
+  default:
 
 
 volumes:

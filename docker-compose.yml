@@ -1,6 +1,22 @@
 version: '3.8'
 
 services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_BASE_URL=$REACT_APP_API_BASE_URL
+    restart: unless-stopped
+    networks:
+      - default
+    expose:
+      - 8888
+    stdin_open: true
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/share/nginx/html
   proxy:
     image: nginx:stable-alpine
     container_name: proxy
@@ -20,8 +36,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
-    expose:
-      - $MONGODB_DOCKER_PORT
+    ports:
+      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - db:/data/db
     networks:
@@ -53,23 +69,7 @@ services:
       FSHOST_FORDEV: $FSHOST_FORDEV
     networks:
       - default
-  frontend:
-    container_name: frontend
-    build:
-      context: ./frontend
-      args:
-        - REACT_APP_BASE_URL=$REACT_APP_API_BASE_URL
-    restart: unless-stopped
-    networks:
-      - default
-    expose:
-      - $REACT_DOCKER_PORT
-    stdin_open: true
-    volumes:
-      - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/share/nginx/html
-    
+
 
 networks:
   default:

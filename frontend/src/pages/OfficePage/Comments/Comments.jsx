@@ -43,9 +43,9 @@ const Comments = () => {
 							id={comment._id}
 							key={comment._id}
 							text={comment.text}
-							author={comment.author.login}
+							author={comment.author?.login}
 							created={comment.created}
-							postByCurrentUser={(comment.author._id === userId)} />
+							postByCurrentUser={(comment.author?._id === userId)} />
 					)
 				})}
 			</div>

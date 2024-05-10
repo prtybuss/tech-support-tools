@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
 	const handleLogin = async ({ login, password }) => {
 		try {
-			const response = await axios.post(` ${REACT_APP_BASE_URL}/signin`, { login, password })
+			const response = await axios.post( /*`  ${REACT_APP_BASE_URL|| 'http://localhost:8080'}` */'/signin', { login, password })
 			dispatch(tokenUpdated(await response.data.token));
 			dispatch(authorized(await response.data.data.user));
 			axios.defaults.headers.common['Authorization'] = 'Bearer ' + await response.data.token;

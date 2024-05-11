@@ -1,12 +1,19 @@
 const officeSchema = require('../models/offices');
+const messageSchema = require('../models/messages');
 const tagSchema = require('../models/tags');
+const ticketSchema = require('../models/tickets');
 const userSchema = require('../models/users');
 const db = require('../models/conn');
+
 const Office = db.model("office", officeSchema);
+const Message = db.model("message", messageSchema);
 const Tag = db.model("tag", tagSchema);
+const Ticket = db.model("ticket", ticketSchema);
 const User = db.model("user", userSchema);
+
 const office_controller = require('./office');
 const tag_controller = require('./tag');
+const base_controller = require('./base');
 const fs_controller = require('./fs');
 
 
@@ -28,3 +35,5 @@ exports.img_get = fs_controller.img_get(Office)
 exports.img_post = fs_controller.img_post(Office)
 exports.audio_get = fs_controller.audio_get(Office, User)
 exports.files_list = fs_controller.files_list(Office, User)
+/* 	~ ~ ~  insert data samples  ~ ~ ~	 */
+exports.insertdatasamples = base_controller.insertdatasamples(Office,Message,Tag,Ticket,User);

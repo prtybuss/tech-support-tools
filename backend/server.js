@@ -1,20 +1,13 @@
 
 const mongoose = require('mongoose');
 const app = require('./app');
-const {	DB_INSERTDATASAMPLES} = process.env;
-const adminController = require('./controllers/admin');
 const db = require('./config/db')
 
 
 const start = async () => {
 	try {
-		await mongoose.connect(db.url, {
-			useNewUrlParser: true,
-			useCreateIndex: true,
-			useFindAndModify: false
-		}).then(() => {
-			DB_INSERTDATASAMPLES ?? adminController.insertdatasamples();
-
+		await mongoose.connect(db.url).then(() => {
+			console.log('DONE ...,\n  db connected', db.url);
 		})
 		app.listen(process.env.NODE_DOCKER_PORT, () => {
 			console.log("server started on", process.env.NODE_DOCKER_PORT, 'port');

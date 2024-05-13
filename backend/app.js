@@ -13,7 +13,7 @@ app.use(cors(/* corsOptions */));
 app.use(helmet());
 app.use(express.json({ limit: '15kb' }));
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan('short'));
+app.use(morgan('dev'));
 
 app.use('/', userRoutes);
 

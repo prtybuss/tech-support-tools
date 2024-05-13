@@ -3,15 +3,17 @@ exports.office_list = Office => async (req, res, next) => {
 	res.send(list);
 }
 exports.office_details = (Office, User) => async (req, res, next) => {
+	console.log('req.params:\n',req.params);
 	const office = await Office.findById(req.params.officeId);
 	await office.populate([
 		{
 			path: "comments", populate: { path: "author", model: User, select: 'login' }
 		},
 		{
-			path: "users", model: User, select: 'login hardware soundDir'
+			path: "users", model: User, select: 'login hardware'
 		}
 	]);
+	console.log('RES \n office:',office);
 	res.send(office);
 }
 exports.office_update = (Office, User) => async (req, res, next) => {

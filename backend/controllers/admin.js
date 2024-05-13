@@ -35,5 +35,3 @@ exports.img_get = fs_controller.img_get(Office)
 exports.img_post = fs_controller.img_post(Office)
 exports.audio_get = fs_controller.audio_get(Office, User)
 exports.files_list = fs_controller.files_list(Office, User)
-/* 	~ ~ ~  insert data samples  ~ ~ ~	 */
-exports.insertdatasamples = base_controller.insertdatasamples(Office,Message,Tag,Ticket,User);

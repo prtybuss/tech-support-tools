@@ -34,11 +34,14 @@
 
 .msymb_icon,
 button {
+	padding: 3px;
+	font-weight: 900;
 	background: none;
 	border: none;
 }
 
 .msymb_icon:hover {
+	color: #174744;
 	cursor: pointer;
 }
 
@@ -105,18 +108,18 @@ body {
 
 .app_wrap {
 	height: 100%;
-	grid-column-gap: 24px;
-	grid-row-gap: 8px;
-	/* 	background: #b7d7d5; */
-	box-sizing: border-box;
-	display: grid;
-	background: linear-gradient(#b7d7d5, #90b0cb00);
-	grid-template-areas:
-		"q navbar navbarbuttons w"
-		"q tags tags w"
-		"x LeftSection RightSection y";
-	grid-template-columns: 1fr 7fr 7fr 1fr;
-	grid-template-rows: 50px minmax(50px, max-content) minmax(450px, max-content);
+    grid-column-gap: 24px;
+    grid-row-gap: 8px;/* 
+    background: #b7d7d5; */
+    box-sizing: border-box;
+    display: grid;
+    background: linear-gradient(#b7d7d5, #90b0cb00);
+    grid-template-areas:
+        "q navbar navbarbuttons w"
+        "q tags tags w"
+        "x LeftSection RightSection y";
+    grid-template-columns: 5% 65% 25% 5%;
+    grid-template-rows: 50px minmax(50px, max-content) minmax(450px, max-content);
 }
 
 
@@ -147,9 +150,19 @@ body {
 }
 
 .Myinput {
-	border: none;
+	/* 
+	width: 100px; */
+	
 	background: none;
-	width: 100px;
+	border: none;/* 
+	display: inline-flex; */
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 2px 15px;/* 
+    background: var(----color-beigE); */
+    font-size: 12px;
+    border-radius: 6px;
+    height: min-content;
+    cursor: pointer;
 }
 
 

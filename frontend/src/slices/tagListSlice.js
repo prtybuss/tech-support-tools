@@ -3,6 +3,7 @@ import store from '../store.js';
 import tag from "../services/tag.service.js";
 import { tagSetActive } from "./tag.js";
 import { tagAdded, tagRemoved } from "./officeSlice.js";
+import { tagPost } from "./tag.js";
 
 const tagListAdapter = createEntityAdapter({
 	sortComparer: (a, b) => a.adress.localeCompare(b.adress),
@@ -18,11 +19,15 @@ export const getList = createAsyncThunk('tagList/getDetails', async (id) => {
 })
 
 export const addTag = createAsyncThunk('tagList/add', async ({ officeId, newTag }, { getState }) => {
-	const res = await tag.post({ officeId, newTag });
-	if ((getState().office.id === officeId) && newTag.tagId) store.dispatch(tagAdded(newTag.tagId))
-	newTag.tagId
-		? store.dispatch(liAdded(getState().preloaded.entities[officeId]))
-		: console.log('надо диспатчить в слайс оффиса');
+console.log(' addTag = createAsyncThunk');
+	const res = await tag.post({ officeId, newTag })
+	const {name,id} = res.data;
+
+	if (newTag.name) {
+		store.dispatch(tagPost({"name":name,"id":id,"active":false}))
+		store.dispatch(tagAdded(id))
+	}
+	if (newTag.tagId && (getState().office.id === officeId)) store.dispatch(tagAdded(newTag.tagId))
 	return res.data
 })
 

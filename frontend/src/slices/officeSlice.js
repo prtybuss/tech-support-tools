@@ -78,7 +78,10 @@ const officeSlice = createSlice({
 		links: [],
 		comments: [{
 			text: '',
-			author: '',
+			author: {
+				id:'',
+				login:''
+			},
 			created: ''
 		}],
 		hardware: {
@@ -90,12 +93,14 @@ const officeSlice = createSlice({
 	},
 	reducers: {
 		dataLoaded: (state, action) => {
+			console.log('action.payload',action.payload);
 			Object.assign(state, action.payload);
 		},
 		linksUpdated: (state, action) => {
 			state.links = action.payload;
 		},
 		tagAdded: (state, action) => {
+			console.log('OFFICEslice :tagAdded',action.payload);
 			state.tags.push(action.payload);
 		},
 		tagRemoved: (state, action) => {

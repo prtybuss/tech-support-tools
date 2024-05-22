@@ -38,6 +38,7 @@ const Comments = () => {
 
 			<div className={cl.comments}>
 				{officeComments.map(comment => {
+					console.log('comment',comment);
 					return (
 						<Comment
 							id={comment._id}

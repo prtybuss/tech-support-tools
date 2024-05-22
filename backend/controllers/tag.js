@@ -36,17 +36,29 @@ exports.tag_post = (Office, Tag) => async (req, res, next) => {
 		res.send(new_tag);
 	};
 }
+
 exports.tag_delete = (Office, Tag) => async (req, res, next) => {
+	console.log('req.params:', req.params);
+
+
 	try {
-		const tag = await Tag.findById(req.params.tagId);
-		if (tag.offices.length <= 1) {
-			await tag.deleteOne();  //если удалили последний офис в этом списке,
-		} else {									// удаляем и сам тег
-			await tag.offices.pull(req.params.officeId);
-		}
-		const office = await Office.findByIdAndUpdate(req.params.officeId, {
-			$pull: { 'tags': req.params.tagId }
-		}).populate({ path: 'tags', model: Tag, select: 'name' });
+		const office = await Office.findById(req.params.officeId);
+		office.tags.pull(req.params.tagId);
+		office.save();
+
+		const tag = await Tag.findById(req.params.tagId)
+
+		if (tag.offices.length <= 1) tag.deleteOne()
+		else tag.offices.pull(req.params.officeId)
+
+		tag.save();
+
+
+
+		/* 	const office = await Office.findByIdAndUpdate(req.params.officeId, {
+				$pull: { 'tags': req.params.tagId }
+			}).populate({ path: 'tags', model: Tag, select: 'name' }); */
+		console.log('office.tags:\n', office.tags);
 		res.send(office.tags);
 	} catch (err) { next(err) }
 }

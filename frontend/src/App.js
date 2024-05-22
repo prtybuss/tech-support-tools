@@ -11,9 +11,7 @@ import ServiceDesk from './pages/Servicedesk/ServiceDesk';
 import NavBar from './layout/NavBar';
 
 
-
 function App() {
-
 	return (
 		<AuthProvider>
 			<div className="app_wrap">

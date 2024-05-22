@@ -8,6 +8,7 @@ const Login = () => {
 	const [login, setlogin] = useState('');
 	const [password, setpassword] = useState('');
 	const handleSubmit = (e) => {
+		console.log('HANDLE SIGNIN');
 		e.preventDefault();
 		onLogin({ login: login, password: password })
 	}

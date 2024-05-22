@@ -3,7 +3,7 @@ db.users.insertMany([
 		"login": "test",
 		"role": "admin",
 		"password": "$2b$08$rmKsitFkRRaHLyA4c5O.seXfgHjazZ.c8CYFt85mu6B3xzgvcE8cW",
-		"created": { "date": NumberLong("1692738426776") }
+		"created": NumberLong("1692738426776")
 	},
 	{
 		"_id": ObjectId("64eb603b4282310b24942976"),
@@ -11,14 +11,10 @@ db.users.insertMany([
 		"role": "user",
 		"password": "$2b$08$vjd5Uy6BKFgkfv1G790ijeChRqcLqlx9CJlT4gXxIHx.Ai2qMIzGm",
 		"office": ObjectId("64d460b105628cc22732442e"),
-		"created": {
-			"date": NumberLong("1693147195213")
-		},
+		"created": NumberLong("1693147195213"),
 		"hardware": {
 			"info": "Lenovo b590 laptop: Celeron 1005M, 2x1.9 ГГц, RAM 2 ГБ, HDD 320 ГБ",
-			"edited": {
-				"date": NumberLong("1693669157545")
-			}
+			"edited": NumberLong("1693669157545")
 		}
 		,
 		"soundDir": "arch-1"
@@ -29,14 +25,10 @@ db.users.insertMany([
 		"role": "user",
 		"password": "$2b$08$D1B.xhy17Z.h4AvwmKbi4.P1WpdQlTsTBZhWlreLz.uwShMelrLHS",
 		"office": ObjectId("64d460b105628cc22732442e"),
-		"created": {
-			"date": NumberLong("1693642482584")
-		},
+		"created": NumberLong("1693642482584"),
 		"hardware": {
 			"info": "sample text here",
-			"edited": {
-				"date": NumberLong("1693669157545")
-			},
+			"edited": NumberLong("1693669157545"),
 			"soundDir": "arch-1"
 		}
 	}
@@ -51,15 +43,13 @@ db.offices.insertMany([
 		"adressFull": "Космонавтов пр., д. 11, лит. А.,гипермаркет «0-key»",
 		"fileList": [
 		],
-		"tags": [
+		"tags": [ "651c725ee02dcd81c9259147","651c7d00086850d84720fb6f","651c7fc9de75a6883041f0af","65e36ebbfd09b6f0965a10ec"
 		],
 		"comments": [
 			{
 				"text": "comment example",
 				"author":  ObjectId("64eb603b4282310b24942976"),
-				"created": {
-					"date": ISODate("2024-03-25T20:38:11.617Z")
-				}
+				"created": ISODate("2024-03-25T20:38:11.617Z")
 			}
 		],
 		"users": ["64eb603b4282310b24942976","64f2eef25b3db9b3613edd6d"],
@@ -71,7 +61,7 @@ db.offices.insertMany([
 			}
 		],
 		"hardware": {
-			"edited": { "date": ISODate("2024-03-25T20:38:11.617Z") },
+			"edited": ISODate("2024-03-25T20:38:11.617Z"),
 			"info": "sample text example"
 		},
 		"imgs": [
@@ -84,7 +74,7 @@ db.offices.insertMany([
 		"adressFull": "Авиаторов Балтики пр., д. 21, лит. А.",
 		"fileList": [
 		],
-		"tags": [
+		"tags": ["651c725ee02dcd81c9259147","651c7d00086850d84720fb6f","651c7fc9de75a6883041f0af"
 		],
 		"comments": [
 			{
@@ -98,14 +88,41 @@ db.offices.insertMany([
 			}
 		],
 		"hardware": {
-			"edited": {
-			},
+			"edited": "",
 			"info": ""
 		},
 		"imgs": [
 		]
 	}
 ])
+
+db.tags.insertMany([
+	{
+		"_id": ObjectId("651c725ee02dcd81c9259147"),
+		"name":"tag1",
+		"offices":["64d460b105628cc22732442e","64d460b105628cc22732442f"]
+	},
+	{
+		"_id": ObjectId("651c7d00086850d84720fb6f"),
+		"name":"tag2",
+		"offices":["64d460b105628cc22732442e","64d460b105628cc22732442f"]
+	},
+	{
+		"_id": ObjectId("651c7fc9de75a6883041f0af"),
+		"name":"tag3",
+		"offices":["64d460b105628cc22732442e","64d460b105628cc22732442f"]
+	},
+	{
+		"_id": ObjectId("65e36ebbfd09b6f0965a10ec"),
+		"name":"tag4",
+		"offices":["64d460b105628cc22732442e"]
+	},
+	{
+		"name":"tag5",
+		"offices":[]
+	},
+])
+
 /* db.createUser(
 	{
 		user: "<user for database which shall be created>",

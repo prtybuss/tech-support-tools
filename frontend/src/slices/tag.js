@@ -27,7 +27,7 @@ export const getDetails = createAsyncThunk('taggs/getDetails', async (id) => {
 
 export const createtag = createAsyncThunk('taggs/create', async (initialtag) => {
 	const res = await tag.post(initialtag);
-	store.dispatch(tagAdded(res.data));
+	store.dispatch(tagPost(res.data));
 	return res.data
 })
 
@@ -36,7 +36,7 @@ const tagsSlice = createSlice({
 	initialState,
 	reducers: {
 		tagsLoaded: tagsAdapter.setAll,
-		tagAdded: tagsAdapter.addOne,
+		tagPost: tagsAdapter.addOne,
 		tagUpdated: tagsAdapter.updateOne,
 		tagsUpdated: tagsAdapter.updateMany,
 		tagRemoved: tagsAdapter.removeOne,
@@ -52,7 +52,7 @@ const tagsSlice = createSlice({
 		}
 	}
 })
-export const { tagsLoaded, tagSetActive, tagAdded, tagRemoved, tagsCleared, tagUpdated } = tagsSlice.actions;
+export const { tagsLoaded, tagSetActive, tagPost, tagRemoved, tagsCleared, tagUpdated } = tagsSlice.actions;
 export const tagsSelector = tagsAdapter.getSelectors((state) => state.taggs);
 export const selectAlltags = tagsSelector.selectAll;
 export const selectTagsIds = tagsSelector.selectIds;

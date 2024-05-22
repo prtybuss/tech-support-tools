@@ -47,7 +47,7 @@ function NewTagInput() {
 			addToList({ officeId: currentOffice, new_tag });
 			setNewTagName(''); setNewTagId('');
 		};
-		return (setHidden(!hidden))
+		setHidden(!hidden);
 	};
 
 	return (
@@ -75,7 +75,7 @@ function NewTagInput() {
 			<div className="msymb_icon" onClick={submitNewTag}>
 				{hidden
 					? 'add'
-					: "OK"
+					: 'check'
 				}
 			</div>
 		</div>

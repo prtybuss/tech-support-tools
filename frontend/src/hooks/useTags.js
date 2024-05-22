@@ -21,10 +21,13 @@ export const TagsProvider = ({ children }) => {
 		setTagListLoading(false);
 		navigate(`/dashboard/list/${tagId}`)
 	}
-	const addToList = (officeId, newTag = { tagId: currentTag.id }) => {
+
+
+	const addToList = (officeId, newTag = { tagId: currentTag?.id }) => {
 		if (currentList.includes(officeId)) return;
 		dispatch(addTag({ officeId, newTag }));
 	}
+
 	const removeFromList = (officeId, tagId = currentTag.id) => dispatch(removeTag({ officeId, tagId }));
 
 

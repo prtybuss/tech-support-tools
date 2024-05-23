@@ -44,7 +44,7 @@ const tagsSlice = createSlice({
 		tagSetActive(state, action) {
 
 			Object.values(state.entities).forEach(tag =>
-				!(tag.active))
+				(tag.active=false))
 			if (action.payload) {
 				const id = action.payload;
 				state.entities[id].active = !state.entities[id].active

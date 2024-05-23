@@ -1,19 +1,18 @@
 .ListItem {
-	width: 133px;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding: 2px 15px;
+	background: var(----color-beigE);
+	font-size: 16px;
+	border-radius: 6px;
+	/* width: 133px; */
 	display: inline-flex;
-	position: relative;
-	padding: 3px 5px;
-	font-size: 14px;
-	border-left: 1px solid #54514329;
-	background: #f9f7ed;
 	position: relative;
 	border-radius: 6px;
 	align-items: center;
 	border: 1px solid transparent;
-	border-radius: 6px;
-	color: #594356;
-	height: min-content;
+	/* color: #594356; */
 	margin-right: 10px;
+	align-content: center;
 }
 
 .ListItem.RestItems {

@@ -1,5 +1,6 @@
 
 const formatDate = (date) => {
+  console.log('date');
   let month = date.slice(5, 7);
   let day = date.slice(8, 10);
   if (day[0] === '0') day = day[1];

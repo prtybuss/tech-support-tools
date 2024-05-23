@@ -20,7 +20,7 @@ const Conversation = () => {
 	const messages = useSelector(messagesSelector.selectAll);
 	const newMessage = useInput();
 	const userId = useSelector(selectId);
-
+console.log('messages',messages);
 	useEffect(() => {
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => document.removeEventListener('mousedown', handleClickOutside);

@@ -5,7 +5,8 @@ import formatDate from "../../../utils/formatDate";
 
 const TicketsListElement = ({ id, authorName, theme, created }) => {
   const { currentTicketId, setCurrentTicketId, getMessageHistory } = useChat();
-  let { date, time } = formatDate(created);
+  console.log(' id, authorName, theme, created ', id, authorName, theme, created );
+  const { /* date,  */time } = formatDate(created);
   return (
     <div className={(id !== currentTicketId) ? classes.list_element : classes.list_element_picked}
       id={id} onClick={() => getMessageHistory(id)}   >

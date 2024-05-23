@@ -19,14 +19,16 @@ export const getList = createAsyncThunk('tagList/getDetails', async (id) => {
 })
 
 export const addTag = createAsyncThunk('tagList/add', async ({ officeId, newTag }, { getState }) => {
-console.log(' addTag = createAsyncThunk');
 	const res = await tag.post({ officeId, newTag })
 	const {name,id} = res.data;
-
+	
 	if (newTag.name) {
 		store.dispatch(tagPost({"name":name,"id":id,"active":false}))
 		store.dispatch(tagAdded(id))
 	}
+
+	if (newTag.tagId && (getState().taggs?.entities?.[`${newTag.tagId}`]?.active === true)) store.dispatch(liAdded({...getState().preloaded?.entities?.[`${officeId}`]}))
+
 	if (newTag.tagId && (getState().office.id === officeId)) store.dispatch(tagAdded(newTag.tagId))
 	return res.data
 })

@@ -1,12 +1,11 @@
 .Links {
-	min-height: 30px;
 	display: flex;
-	color: var(--color-darkgreen);
 	position: relative;
+	color: var(--color-darkgreen);
 	padding: 0px 5px 2px 0px;
 	font-weight: 500;
-	position: relative;
-	justify-content: space-between;
+	column-gap: 6px;
+	justify-content: flex-start;
 	align-items: flex-start;
 }
 

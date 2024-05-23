@@ -43,22 +43,20 @@ exports.tag_delete = (Office, Tag) => async (req, res, next) => {
 
 	try {
 		const office = await Office.findById(req.params.officeId);
+		console.log('office.tags', office.tags);
 		office.tags.pull(req.params.tagId);
 		office.save();
+		console.log('office.tags', office.tags);
 
 		const tag = await Tag.findById(req.params.tagId)
-
+		console.log('tag.offices', tag.offices);
 		if (tag.offices.length <= 1) tag.deleteOne()
-		else tag.offices.pull(req.params.officeId)
-
-		tag.save();
-
-
-
-		/* 	const office = await Office.findByIdAndUpdate(req.params.officeId, {
-				$pull: { 'tags': req.params.tagId }
-			}).populate({ path: 'tags', model: Tag, select: 'name' }); */
-		console.log('office.tags:\n', office.tags);
+		else {
+			tag.offices.pull(req.params.officeId)
+			tag.save()
+		}
+		
+		console.log('tag.offices', tag.offices);
 		res.send(office.tags);
 	} catch (err) { next(err) }
 }

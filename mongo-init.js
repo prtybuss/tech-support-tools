@@ -43,16 +43,21 @@ db.offices.insertMany([
 		"adressFull": "Космонавтов пр., д. 11, лит. А.,гипермаркет «0-key»",
 		"fileList": [
 		],
-		"tags": [ "651c725ee02dcd81c9259147","651c7d00086850d84720fb6f","651c7fc9de75a6883041f0af","65e36ebbfd09b6f0965a10ec"
+		"tags": ["651c725ee02dcd81c9259147", "651c7d00086850d84720fb6f", "651c7fc9de75a6883041f0af", "65e36ebbfd09b6f0965a10ec"
 		],
 		"comments": [
 			{
 				"text": "comment example",
-				"author":  ObjectId("64eb603b4282310b24942976"),
+				"author": ObjectId("64eb603b4282310b24942976"),
+				"created": ISODate("2024-03-25T20:38:11.617Z")
+			},
+			{
+				"text": "comment example",
+				"author": ObjectId("64eb603b4282310b24942976"),
 				"created": ISODate("2024-03-25T20:38:11.617Z")
 			}
 		],
-		"users": ["64eb603b4282310b24942976","64f2eef25b3db9b3613edd6d"],
+		"users": ["64eb603b4282310b24942976", "64f2eef25b3db9b3613edd6d"],
 		"links": [
 			{
 				"title": "link",
@@ -74,18 +79,13 @@ db.offices.insertMany([
 		"adressFull": "Авиаторов Балтики пр., д. 21, лит. А.",
 		"fileList": [
 		],
-		"tags": ["651c725ee02dcd81c9259147","651c7d00086850d84720fb6f","651c7fc9de75a6883041f0af"
+		"tags": ["651c725ee02dcd81c9259147", "651c7d00086850d84720fb6f", "651c7fc9de75a6883041f0af"
 		],
 		"comments": [
-			{
-
-			}
 		],
 		"users": [
 		],
 		"links": [
-			{
-			}
 		],
 		"hardware": {
 			"edited": "",
@@ -99,30 +99,101 @@ db.offices.insertMany([
 db.tags.insertMany([
 	{
 		"_id": ObjectId("651c725ee02dcd81c9259147"),
-		"name":"tag1",
-		"offices":["64d460b105628cc22732442e","64d460b105628cc22732442f"]
+		"name": "tag1",
+		"offices": ["64d460b105628cc22732442e", "64d460b105628cc22732442f"]
 	},
 	{
 		"_id": ObjectId("651c7d00086850d84720fb6f"),
-		"name":"tag2",
-		"offices":["64d460b105628cc22732442e","64d460b105628cc22732442f"]
+		"name": "tag2",
+		"offices": ["64d460b105628cc22732442e", "64d460b105628cc22732442f"]
 	},
 	{
 		"_id": ObjectId("651c7fc9de75a6883041f0af"),
-		"name":"tag3",
-		"offices":["64d460b105628cc22732442e","64d460b105628cc22732442f"]
+		"name": "tag3",
+		"offices": ["64d460b105628cc22732442e", "64d460b105628cc22732442f"]
 	},
 	{
 		"_id": ObjectId("65e36ebbfd09b6f0965a10ec"),
-		"name":"tag4",
-		"offices":["64d460b105628cc22732442e"]
+		"name": "tag4",
+		"offices": ["64d460b105628cc22732442e"]
 	},
 	{
-		"name":"tag5",
-		"offices":[]
+		"name": "tag5",
+		"offices": []
 	},
 ])
 
+db.tickets.insertMany([
+	{
+		"_id": ObjectId("64f8ff4066b2c39250dc9e98"),
+		"theme": "sample ticket 1",
+		"participants": ["64f2eef25b3db9b3613edd6d"],
+		"author": ObjectId("64f2eef25b3db9b3613edd6d"),
+		"authorName": "author1",
+		"office": ObjectId("64d460b105628cc22732442e"),
+		"status": "proceed",
+		"messages": ["64f357250b101e85c1c6a95e", "64f37d290b101e85c1c6aae8"],
+		"created": ISODate("2023-09-06T22:37:52.496Z"),
+		"updated": ISODate("2024-03-02T19:04:23.852Z"),
+
+	},
+	{
+		"_id": ObjectId("651dd3b4efc549cad22c9b5e"),
+		"theme": "sample ticket 2",
+		"participants": ["64eb603b4282310b24942976"],
+		"author": ObjectId("64eb603b4282310b24942976"),
+		"authorName": "author2",
+		"office": ObjectId("64d460b105628cc22732442f"),
+		"status": "closed",
+		"messages": [],
+		"created": ISODate("2023-09-06T22:37:52.496Z"),
+		"updated": ISODate("2024-03-02T19:04:23.852Z"),
+
+	},
+	{
+		"_id": ObjectId("6520b2bb2932ad2ea811c0ca"),
+		"theme": "sample ticket 3",
+		"participants": ["64f2eef25b3db9b3613edd6d"],
+		"author": ObjectId("64f2eef25b3db9b3613edd6d"),
+		"authorName": "author1",
+		"office": ObjectId("64d460b105628cc22732442e"),
+		"status": "new",
+		"messages": [],
+		"created": ISODate("2023-09-06T22:37:52.496Z"),
+		"updated": ISODate("2024-03-02T19:04:23.852Z"),
+
+	},
+])
+
+db.messages.insertMany([
+	{
+		"_id": ObjectId("64f357250b101e85c1c6a95e"),
+		"text": "sample text memssage 1",
+		"author": ObjectId("64f2eef25b3db9b3613edd6d"),
+		"ticket": ObjectId("64f8ff4066b2c39250dc9e98"),
+		"status": "viewed",
+		"created": ISODate("2023-09-02T15:39:17.545Z"),
+		"edited": ISODate("2023-09-02T15:39:17.545Z")
+	},
+	{
+		"_id": ObjectId("64f37d290b101e85c1c6aae8"),
+		"text": "sample text memssage 2",
+		"author": ObjectId("64eb603b4282310b24942976"),
+		"ticket": ObjectId("64f8ff4066b2c39250dc9e98"),
+		"status": "viewed",
+		"created": ISODate("2013-09-02T15:39:17.545Z"),
+		"edited": ISODate("2014-09-02T15:39:17.545Z")
+	},
+	{
+		"_id": ObjectId("64f37d590b101e85c1c6ab15"),
+		"text": "sample text memssage 3",
+		"author": ObjectId("64eb603b4282310b24942976"),
+		"ticket": ObjectId("651dd3b4efc549cad22c9b5e"),
+		"status": "viewed",
+		"created": ISODate("2003-10-02T15:39:17.545Z"),
+		"edited": ISODate("2004-09-02T15:39:17.545Z")
+	},
+])
 /* db.createUser(
 	{
 		user: "<user for database which shall be created>",

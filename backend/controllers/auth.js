@@ -74,7 +74,7 @@ exports.signup = async (req, res, next) => {
 			login: req.body.login,
 			role: req.body.role,
 			password: bcrypt.hashSync(req.body.password, 8),
-			office: office.id
+			office: req.body.office
 		});
 
 		const token = createToken(user.id);

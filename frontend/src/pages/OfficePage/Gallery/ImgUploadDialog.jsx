@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
+import cl from "./Gallery.module.css"
 import { useOffice } from "../../../hooks/useOffice";
 import { useSelector } from "react-redux";
-import { numb } from "../../../slices/officeSlice";
+import { dataLoaded, numb } from "../../../slices/officeSlice";
+import store from "../../../store";
 
+const { REACT_APP_BASE_URL } = process.env
 
 const ImgUploadDialog = ({ setVisible }) => {
 	const { currentOffice } = useOffice();
@@ -13,28 +16,32 @@ const ImgUploadDialog = ({ setVisible }) => {
 	const filesArray = files ? [...files] : [];
 
 	const submit = async event => {
+
 		event.preventDefault();
 		const formData = new FormData();
 		filesArray.forEach(file => formData.append('image', file, currentOfficeNumb))
 		formData.append("office", currentOfficeNumb);
-		await axios.post(`http://192.168.88.16:5000/api/office/${currentOffice}/img`,
+
+		await axios.post(`${REACT_APP_BASE_URL}/api/office/${currentOffice}/img`,
 			formData, {
 			headers: { 'Content-Type': 'multipart/form-data' },
 			enctype: "multipart/form-data",
 			data: formData
-		}).then(setVisible(false))
+		}).then(res => store.dispatch(dataLoaded(res.data)))
+
+		setVisible(false)
 	}
 
-	/*   function showPicked() {
-			console.log('f f ff iles lenght', ir.current.value);
-			let len = 8
-			let i = 0;
-			filesArray.lenght;
-			while (i < len) {
-				console.log(ir.current.files.item(i).name);
-				i++
-			}
-		}; */
+	function showPicked() {
+		console.log('f f ff iles lenght', ir.current.value);
+		let len = 8
+		let i = 0;
+		filesArray.lenght;
+		while (i < len) {
+			console.log(ir.current.files?.item(i)?.name);
+			i++
+		}
+	};
 	/* const FileList = useCallback(() => {
 				let l = filesArray.lenght;
 					return (
@@ -43,7 +50,7 @@ const ImgUploadDialog = ({ setVisible }) => {
 
 	return (
 		<>
-			<div className="ImgUploadDialog" style={{ zIndex: 2 }}>
+			<div className={cl.ImgUploadDialog} style={{ zIndex: 2 }}>
 				{files /* && <FileList />  */ && ir.current.files.lenght}
 
 				<form
@@ -51,12 +58,19 @@ const ImgUploadDialog = ({ setVisible }) => {
 					method="post"
 					onSubmit={submit} >
 
-					<input ref={ir}
+					<label
+						for="file-upload"
+						class="custom-file-upload">
+						Загрузить фото
+					</label>
+					<input
+						ref={ir}
 						type="file" multiple
 						onChange={e => {
 							setFiles(e.target.files);
-							/* showPicked();console.log('files.item[0]',ir.current.files); */
+							showPicked(); console.log('files.item[0]', ir.current.files);
 						}}
+						id="file-upload"
 						placeholder="выберите файл"
 						className="MyFileinput" />
 					<button type="submit" className="link" > Ok! </button>

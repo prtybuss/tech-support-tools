@@ -1,7 +1,7 @@
 .gallery {
-	border:2px solid var(--color-PRIMARY);
+	/* 	border: 2px solid var(--color-PRIMARY); */
 	/* 	margin: 10px; */
-	min-height: 100px;
+	/* min-height: 100px; */
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -9,9 +9,10 @@
 
 
 .btns__wrap {
-	/* background: bisque;  */
-	color: #e4f0ef;
-	font-size: 24px;
+	/* 	outline: 2px solid #3b4f4e; */
+	/* background: bisque;
+		color: #e4f0ef;
+	font-size: 24px; */
 	grid-template-areas:
 		"back space forward"
 		"more space add";
@@ -30,6 +31,7 @@
 }
 
 .btns {
+	background: #f0f8ff33;
 	font-family: 'Material Icons';
 	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 	z-index: 1;
@@ -99,7 +101,11 @@
 	padding: 10px 15px;
 }
 
-.MyFileinput::file-selector-button {
+input[type="file"] {
+	display: none;
+}
+
+.ImgUploadDialog::file-selector-button {
 	transition: outline-color 0.5s ease;
 	color: #174744;
 	border-radius: 6px;

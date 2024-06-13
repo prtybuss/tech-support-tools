@@ -16,7 +16,16 @@ const Hardware = () => {
 		id: currentOffice
 	});
 
-	useEffect(() => setUpdatedValue(original.info), [original, officeHw, onEdit])
+	useEffect(() => {
+		setOriginal({ id: currentOffice, ...officeHw })
+
+	}, [officeHw])
+
+	useEffect(() => {
+		setUpdatedValue(original.info)
+	}
+		, [original,/*  officeHw, */ onEdit])
+
 	useEffect(() => {
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => document.removeEventListener('mousedown', handleClickOutside)
@@ -29,7 +38,7 @@ const Hardware = () => {
 		}
 	};
 	const update = () => {
-		updateInfo({ id: original.id, info: updatedValue })
+		updateInfo({ /* id: original.id, */hardware: { info: updatedValue } })
 		setOnEdit(false);
 	}
 

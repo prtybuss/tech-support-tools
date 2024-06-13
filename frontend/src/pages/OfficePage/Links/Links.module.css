@@ -6,17 +6,23 @@
 	font-weight: 500;
 	column-gap: 6px;
 	justify-content: flex-start;
-	align-items: flex-start;
+	align-items: center;
 }
 
 .linksItems {
+	color: #563c5c;
+	font-family: Nunito Sans, sans-serif;
 	font-weight: 500;
+	/* background: aliceblue; */
+	/* min-height: 30px; */
 	grid-column-gap: 5px;
 	display: flex;
-	justify-content: flex-start;
+	align-items: center;
+	justify-content: flex-end;
 }
 
 .linkscontrols {
+	column-gap: 5px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;

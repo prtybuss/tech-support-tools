@@ -24,6 +24,14 @@ const imgSchema = new Schema({
 }
 );
 
+const hwSchema = new Schema({
+	info: String,
+	edited: {
+		type: Date,
+		default: Date.now
+	}
+});
+
 const officeSchema = new Schema({
 	numb: String,
 	ip: String,

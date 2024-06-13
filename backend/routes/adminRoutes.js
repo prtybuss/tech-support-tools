@@ -4,7 +4,8 @@ const adminController = require('../controllers/admin');
 const multer = require("multer");
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null, `./public/uploads/${file.originalname}/`)
+		cb(null, './public/uploads/')
+		/* cb(null, `./public/uploads/${file.originalname}/`) */
 	},
 	filename: function (req, file, cb) {
 		const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -24,17 +25,17 @@ router
 router
 	.route('/office/:officeId/link')
 	.post(adminController.link_post);
-router	 			
+router
 	.route('/office/:officeId/link/:linkId')
 	.delete(adminController.link_delete)
 router
 	.route('/office/:officeId/comment')
 	.post(adminController.comment_post);
-router				
+router
 	.route('/office/:officeId/comment/:commentId')
 	.delete(adminController.comment_delete);
 
-  /*   ~ ~ ~   Tags    ~ ~ ~	 */
+/*   ~ ~ ~   Tags    ~ ~ ~	 */
 router
 	.route('/tags')
 	.get(adminController.tag_list);
@@ -48,7 +49,7 @@ router
 	.route('/office/:officeId/tag/:tagId')
 	.delete(adminController.tag_delete);
 
-  /*   ~ ~ ~   fs  ~ ~ ~	 */
+/*   ~ ~ ~   fs  ~ ~ ~	 */
 router
 	.route('/office/:officeId/img/:imgId')
 	.get(adminController.img_get);

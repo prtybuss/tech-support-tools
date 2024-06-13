@@ -10,18 +10,21 @@ import { selectUserById, selectUsers } from "../../../slices/officeSlice";
 import { useParams } from "react-router-dom";
 const { REACT_APP_BASE_URL } = process.env
 
+
 const controller = new AbortController();
 
+
 const getAudio = async (currentOffice, currentUser, file) => {
-	let resp = await axios.get(`${REACT_APP_BASE_URL}/api/office/${currentOffice}/${currentUser}/listen/${file}`, {
+	/* 	let resp = await axios.get(`${REACT_APP_BASE_URL}/api/office/${currentOffice}/${currentUser}/listen/${file}`, { */
+	const resp = await axios.get(`${REACT_APP_BASE_URL}/api/office/${currentOffice}/${currentUser}/listen/${file}`, {
 		responseType: 'blob',
+		timeout: 1000 * 15,
 		signal: controller.signal
-	})
-		.catch(function (error) {
-			console.log(Error.message);
-		})
+	})/* .catch(err => console.log(err.message)) */
 	return URL.createObjectURL(resp.data);
+
 };
+
 
 const FileExplorer = () => {
 	const { officeId } = useParams();
@@ -35,19 +38,27 @@ const FileExplorer = () => {
 	const [audioSrc, setAudioSrc] = useState();
 	const { watchDir, currentOffice } = useOffice();
 	const users = useSelector(selectUsers);
-	/* фильтр по юзеру */
-	const [currentUser, setCurrentUser] = useState(users?.[0])
+	const [currentUser, setCurrentUser] = useState()
+
 
 	useEffect(() => {
-		setNowPlaying(''); setCurrentPath(''); controller.abort();
+		/* 	controller.signal ? controller.abort() : false; */
+		setNowPlaying('');
+		setCurrentPath(''); /* controller.abort(); */
+		/* setCurrentUser(users?.[0]?.['_id']) */
 	}, [officeId])
 
 	useEffect(() => {
-		if (currentOffice) watchDir({ userId: currentUser?._id, subfolder: (currentPath ?? '') });
-	}, [/* currentOffice, */ currentUser?._id, currentPath])
+		/* 	console.log('currentPath', currentPath); */
+		currentUser ?? setCurrentUser(users?.[0]?.['_id']);
+		if (currentUser || currentPath) watchDir({ userId: currentUser, subfolder: (currentPath ?? '') });
+	}, [currentOffice, currentUser, currentPath])
 
 
-	const play = (fileName) => {
+	const play = async (fileName) => {
+		setAudioSrc('');
+		/* controller.abort(); */
+		console.log('play');
 		setNowPlaying(fileName);
 		if (fileName) {
 			const file = currentPath ? currentPath + '/' + fileName : fileName
@@ -55,22 +66,21 @@ const FileExplorer = () => {
 		}
 	};
 
-	const pickAnotherUser = (user) => {/* 
-		const { login, _id } = users.find(u => u._id === e.target.id) */
+	const pickAnotherUser = (user) => {
 		console.log('user', user._id);
-		setCurrentUser(user);
+		setCurrentUser(user._id);
 	}
 
 	return (
 		<div className={cl.explorer}>
-			{currentUser?.login}
+
 			<div className={cl.explorer_header}>
 				{users.map(user => {
 					return (
 						<div
 							onClick={() => pickAnotherUser(user)}
 							className={
-								currentUser?._id === user._id
+								currentUser === user._id
 									? cl.explorer_header__options_item_current
 									: cl.explorer_header__options_item
 							}
@@ -143,6 +153,7 @@ const FileExplorer = () => {
 
 			{nowPlaying &&                              //аудио плеер
 				<div className="player"> {nowPlaying}
+					<span>audio</span>
 					<audio
 						ref={player}
 						src={audioSrc} controls autoPlay preload="true" />

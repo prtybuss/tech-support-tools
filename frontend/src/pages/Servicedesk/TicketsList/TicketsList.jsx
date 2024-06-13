@@ -9,7 +9,7 @@ import Filters from "./Filters";
 const TicketsList = () => {
 	const tickets = useSelector(ticketsSelector.selectAll);
 	const [selectedSort, setSelectedSort] = useState('');
-	const [statusFilter, setStatusFilter] = useState();
+	const [statusFilter, setStatusFilter] = useState('');
 
 
 	const sortedTickets = useMemo(() => {
@@ -33,39 +33,46 @@ const TicketsList = () => {
 	}, [tickets, selectedSort, statusFilter]);
 
 	return (
-		<div className={classes.list_wrap}>
-			<div className={classes.sort}>
-				<Select
-					value={selectedSort}
-					onChange={sort => setSelectedSort(sort)}
-					defaultValue="сортировка"
-					options={[
-						{ value: 'theme', name: 'тема' },
-						{ value: 'authorName', name: 'автор' },
-						{ value: 'updated', name: 'обновлен' },
-					]}
-					className={classes.le_sort} />
+		<>
+			<div className={classes.list_wrap}>
+
+				<div className={classes.le_sort}>
+					<div>
+						<Select
+							value={selectedSort}
+							onChange={sort => setSelectedSort(sort)}
+							defaultValue="sort"
+							options={[
+								{ value: 'theme', name: 'тема' },
+								{ value: 'authorName', name: 'автор' },
+								{ value: 'updated', name: 'обновлен' },
+							]}
+							className={classes.le_sort__sorttype} />
+					</div>
+					<div className={classes.filters}>
+						<Filters
+							currentFilter={statusFilter}
+							className={classes.filter_option}
+							classNameForCurrent={classes.filter_option_current}
+							onClick={filter => setStatusFilter(filter)}
+							options={[
+								{ value: '', name: 'все' },
+								{ value: 'new', name: 'новые' },
+								{ value: 'proceed', name: 'в обработке' },
+								{ value: 'closed', name: 'закрытые' },
+							]} />
+					</div>
+				</div>
+
+
+
+
+				<div className={classes.list}>
+					{listComponents}
+				</div>
+
 			</div>
-
-			<div className={classes.filters}>
-				<Filters
-					currentFilter={statusFilter}
-					className={classes.filter_option}
-					classNameForCurrent={classes.filter_option_current}
-					onClick={filter => setStatusFilter(filter)}
-					options={[
-						{ value: 'new', name: 'новые' },
-						{ value: 'proceed', name: 'в обработке' },
-						{ value: 'closed', name: 'закрытые' },
-					]} />
-			</div>
-
-
-			<div className={classes.list}>
-				{listComponents}
-			</div>
-
-		</div>
+		</>
 	)
 }
 

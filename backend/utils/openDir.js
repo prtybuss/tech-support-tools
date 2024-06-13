@@ -5,8 +5,8 @@ const formatBytes = require('./formatBytes.js');
 const AppError = require('./appError.js');
 
 
-module.exports = async (dirpath, next) => {
-	console.log('gonna scan following dir:', dirpath);
+module.exports = async (dirpath, req, res, next) => {
+
 	const result = [];
 	try {
 		let dir = await fs.promises.opendir(dirpath);
@@ -28,8 +28,9 @@ module.exports = async (dirpath, next) => {
 			}
 			result.push(file);
 		}
+		res.send(result);
 	} catch (err) {
-		return next(new AppError(500, "fail", "Cant scan this dir, pls check the path"))
+		err = new AppError(404, 'fail', 'host unreacheble', req.url);
+		next(err, req, res, next);
 	}
-	return result;
 };

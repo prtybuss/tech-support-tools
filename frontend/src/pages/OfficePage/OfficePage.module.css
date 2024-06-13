@@ -2,32 +2,33 @@
 	display: flex;
 	position: relative;
 	justify-content: space-between;
+
 }
 
 .Tags {
-	
-    column-gap: 6px;
-    /* background: var(--color-PRIMARY); */
-    display: flex;
-    color: rgba(0, 0, 0, 0.7);
-    position: relative;
-    padding: 3px 5px 15px 15px;
-    font-weight: 500;
-    align-content: flex-start;
-    /* align-items: center; */
-    flex-direction: row;
-    justify-content: flex-start;
+
+	column-gap: 6px;
+	/* background: var(--color-PRIMARY); */
+	display: flex;
+	color: rgba(0, 0, 0, 0.7);
+	position: relative;
+	padding: 3px 5px 15px 15px;
+	font-weight: 500;
+	align-content: flex-start;
+	/* align-items: center; */
+	flex-direction: row;
+	justify-content: flex-start;
 
 }
 
 .officeTags {
 	font-weight: 500;
-    column-gap: 6px;
-    row-gap: 4px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+	column-gap: 6px;
+	row-gap: 4px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 }
 
 
@@ -35,6 +36,7 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	align-items: center;
 }
 
 .dd_list {

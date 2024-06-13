@@ -1,4 +1,16 @@
 .Link {
+	/* background: #90b0cb57; */
+	/* border-bottom-left-radius: 3px; */
+	/* border-bottom-right-radius: 3px; */
+	color: #484545;
+	font-size: 12px;
+	height: -webkit-min-content;
+	height: min-content;
+	padding: 3px 15px;
+
+	text-decoration: none;
+
+	/* 
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
 	height: min-content;
@@ -9,10 +21,21 @@
 	position: relative;
 	padding: 3px 15px;
 	font-size: 12px;
-	cursor: pointer;
+	cursor: pointer; */
 }
 
 .Link_deletable {
+	color: #563c5c;
+	font-family: Nunito Sans, sans-serif;
+	font-size: .7rem;
+	font-weight: 500;
+	background: aliceblue;
+	min-height: 30px;
+	grid-column-gap: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
 	border: 1px solid transparent;
 	color: red;
 

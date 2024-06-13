@@ -20,6 +20,7 @@ exports.img_get = (Office) => async (req, res, next) => {
 		});
 	} catch (err) { next(err) }
 }
+
 exports.img_post = (Office) => async (req, res, next) => {
 	const office = await Office.findById(req.params.officeId);
 	req.files.forEach(f => {
@@ -31,31 +32,33 @@ exports.img_post = (Office) => async (req, res, next) => {
 	office.save()
 	res.send(office);
 };
+
 exports.audio_get = (Office, User) => async (req, res, next) => {
-	const { soundDir } = await User.findById(req.params.userId);
-	const office = await Office.findById(req.params.officeId);
-	filePath = (req.params.dir ? req.params.dir + '/' : '') + req.params.file;
-	const fullPath = path.join(`${office.fileServerIp}${soundDir}\\`, filePath);
-	let readStream = fs.createReadStream(fullPath);
+	const { soundDir } = User.findById(req.params.userId);
+	const filePath = (req.params.dir ? req.params.dir + '/' : '') + req.params.file;
+	const fullPath = path.join(`${soundDir}\\`, filePath);
+	const readStream = fs.createReadStream(fullPath, {
+		emitClose: false
+	});
+	readStream.on('error', function (err) {
+		res.end(err);
+	});
 	readStream.pipe(res);
-	res.status(200);
 }
 
 exports.files_list = (Office, User) => async (req, res, next) => {
-	console.log('req.params', req.params);
+
 	try {
 		const { soundDir } = await User.findById(req.params.userId);
-		console.log('sss', soundDir);
+		const subfolder = req.params.dir ?? '';
 		if (!soundDir) {
 			return next(
 				new AppError(401, "fail", "sound dir does not configurated for this userId"));
 		}
-		const office = await Office.findById(req.params.officeId);
-		const subfolder = req.params.subfolder ?? '';
-		const dirpath = path.join(`${office.fileServerIp}${soundDir}\\`, subfolder);
+		const dirpath = path.join(`${soundDir}\\`, subfolder);
 		console.log('dirpath', dirpath);
-		let result = await openDir(dirpath, next)
-		res.send(result)
-	} catch (err) { next(err) }
+		openDir(dirpath, req, res, next);
+	} catch (err) { next(err); }
+
 
 } 

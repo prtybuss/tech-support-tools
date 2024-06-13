@@ -25,11 +25,12 @@ function NavBar() {
 
 	return (
 		< >
-
 			<div className={cl.navbar}>
 				{office_list && isAdmin && <NavSearch />}
-				{token && (isAdmin == false) &&
-					<div className={cl.nav_btn} onClick={() => setModal(true)}> Новое обращение </div>}
+				{
+					token && (isAdmin == false)
+					&& <div className={cl.mainwrap_element/* nav_btn */} onClick={() => setModal(true)}> пожаловаться программистам </div>
+				}
 			</div>
 
 			<div className={cl.navbarbuttons}>
@@ -42,7 +43,7 @@ function NavBar() {
 					</Link>
 				</div>
 
-				{token && (<div className={cl.mainwrap_element} onClick={onLogout}> Выйти </div>)}
+				{token && (<div className={cl.mainwrap_element} onClick={onLogout}> выйти </div>)}
 			</div>
 
 			<MyModal visible={modal} setVisible={setModal}>

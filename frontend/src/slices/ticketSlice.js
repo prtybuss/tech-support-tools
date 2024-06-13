@@ -58,8 +58,10 @@ const ticketsSlice = createSlice({
 export const { ticketsLoaded, ticketAdded, ticketProceed, ticketClosed, ticketsCleared, ticketUpdated } = ticketsSlice.actions;
 
 export const ticketsSelector = ticketsAdapter.getSelectors((state) => state.tickets);
-export const selectAllTickets = ticketsSelector.selectAll;
+export const selectTicketById = id => state => ticketsSelector.selectById(state, id);
 
+
+export const selectAllTickets = ticketsSelector.selectAll;
 export const selectNew = (state) => selectAllTickets.filter(t => t.status === 'new');
 
 export default ticketsSlice.reducer;

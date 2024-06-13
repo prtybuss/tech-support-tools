@@ -60,7 +60,7 @@ export const removeLink = createAsyncThunk('office/removeLink', async ({ officeI
 export const updateOfficeInfo = createAsyncThunk('office/updateInfo', async ({ officeId, update }) => {
 	try {
 		const res = await office.updateInfo({ officeId, update });
-		return res.data;
+		store.dispatch(dataLoaded(res.data));
 	}
 	catch (error) { console.error(error); }
 })
@@ -79,8 +79,8 @@ const officeSlice = createSlice({
 		comments: [{
 			text: '',
 			author: {
-				id:'',
-				login:''
+				id: '',
+				login: ''
 			},
 			created: ''
 		}],
@@ -93,14 +93,14 @@ const officeSlice = createSlice({
 	},
 	reducers: {
 		dataLoaded: (state, action) => {
-			console.log('action.payload',action.payload);
+			console.log('action.payload', action.payload);
 			Object.assign(state, action.payload);
 		},
 		linksUpdated: (state, action) => {
 			state.links = action.payload;
 		},
 		tagAdded: (state, action) => {
-			console.log('OFFICEslice :tagAdded',action.payload);
+			console.log('OFFICEslice :tagAdded', action.payload);
 			state.tags.push(action.payload);
 		},
 		tagRemoved: (state, action) => {

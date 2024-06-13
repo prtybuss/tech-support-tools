@@ -17,7 +17,7 @@ db.users.insertMany([
 			"edited": NumberLong("1693669157545")
 		}
 		,
-		"soundDir": "arch-1"
+		"soundDir": "\\\\192.168.0.80\\share\\user1"
 	},
 	{
 		"_id": ObjectId("64f2eef25b3db9b3613edd6d"),
@@ -28,16 +28,30 @@ db.users.insertMany([
 		"created": NumberLong("1693642482584"),
 		"hardware": {
 			"info": "sample text here",
-			"edited": NumberLong("1693669157545"),
-			"soundDir": "arch-1"
-		}
+			"edited": NumberLong("1693669157545")
+		},
+		"soundDir": "\\\\192.168.0.80\\share\\user2"
+	},
+	{
+		"_id": ObjectId("66661b8ab43c318e08168386"),
+		"login": "user3",
+		"role": "user",
+		"password": "$2b$08$FlF.rysRoz6Qrms5MU3sPO5rC5qmEu3dEaNaDMUHdWcURA.7QN2rW",
+		"office": ObjectId("64d460b105628cc22732442f"),
+		"created": NumberLong("1693642482584"),
+		"hardware": {
+			"info": "some info about user's hw",
+			"edited": NumberLong("1693669157545")
+		},
+		"soundDir": "\\\\192.168.0.80\\share\\user3"
+
 	}
 ]);
 
 db.offices.insertMany([
 	{
 		"_id": ObjectId("64d460b105628cc22732442e"),
-		"ip": "10.4.1.*",
+		"ip": "192.168.0.61",
 		"numb": "0001",
 		"adress": "Космонавтов пр.",
 		"adressFull": "Космонавтов пр., д. 11, лит. А.,гипермаркет «0-key»",
@@ -73,14 +87,34 @@ db.offices.insertMany([
 		]
 	}, {
 		"_id": ObjectId("64d460b105628cc22732442f"),
-		"ip": "10.4.2.*",
+		"ip": "192.168.0.62",
 		"numb": "0002",
-		"adress": "Авиаторов Балтики пр.",
-		"adressFull": "Авиаторов Балтики пр., д. 21, лит. А.",
+		"adress": "Авиаконструкторов",
+		"adressFull": "Авиаконструкторов пр., д. 21, лит. Ш.",
 		"fileList": [
 		],
 		"tags": ["651c725ee02dcd81c9259147", "651c7d00086850d84720fb6f", "651c7fc9de75a6883041f0af"
 		],
+		"comments": [
+		],
+		"users": ["66661b8ab43c318e08168386" ],
+		"links": [
+		],
+		"hardware": {
+			"edited": "",
+			"info": ""
+		},
+		"imgs": [
+		]
+	}
+	, {
+		"ip": "192.168.0.63",
+		"numb": "0003",
+		"adress": "Приморское ш.",
+		"adressFull": "Приморское ш., д. 66, лит. Г.",
+		"fileList": [
+		],
+		"tags": [],
 		"comments": [
 		],
 		"users": [

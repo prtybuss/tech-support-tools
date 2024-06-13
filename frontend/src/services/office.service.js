@@ -28,7 +28,6 @@ class office {
 	}
 
 	getDirContent({ officeId, userId, subfolder }) {
-		console.log('officeId, userId, subfolder', officeId, userId, subfolder);
 		return axios.get(`${REACT_APP_BASE_URL}/api/office/${officeId}/files/${userId}/${subfolder}`);
 	}
 

@@ -19,6 +19,8 @@ const Gallery = () => {
 	const [imgOpen, setImgOpen] = useState();
 	const [expanded, setExpanded] = useState(false)
 
+
+
 	useEffect(() => {
 		imagesIds ? setStack(imagesIds) : false;
 		/* 	setVisibleImages(stack.slice(0, 4)); */

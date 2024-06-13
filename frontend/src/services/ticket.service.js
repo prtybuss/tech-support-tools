@@ -16,7 +16,7 @@ class ticket {
 	}
 
 	create(data) {
-		return axios.post("${REACT_APP_BASE_URL}/ticket", data);
+		return axios.post(`${REACT_APP_BASE_URL}/ticket`, data);
 	}
 
 	update({ ticketId, changes }) {

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import cl from '../OfficePage.module.css'
 import { tagsSelector } from "../../../slices/tag";
@@ -7,13 +7,14 @@ import DropdownList from "../../../components/UI/DropdownList/DropdownList";
 import { useTags } from "../../../hooks/useTags";
 import { useOffice } from "../../../hooks/useOffice";
 
+
 function NewTagInput() {
 	const { addToList } = useTags();
 	const { currentOffice } = useOffice();
-	const [newTagName, setNewTagName] = useState();
-	const [newTagId, setNewTagId] = useState();
+	const [tagName, setTagName] = useState('');
+	const [tagId, setTagId] = useState();
 	const [hidden, setHidden] = useState(true);
-	const [dropdownVisible, setDropdownVisible] = useState(true);
+	const [showSearchResults, setShowSearchResults] = useState(false);
 	const inputRef = useRef(null);
 	const tagEditBlockRef = useRef(null);
 	const allTags = useSelector(tagsSelector.selectAll);
@@ -24,55 +25,64 @@ function NewTagInput() {
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => document.removeEventListener('mousedown', handleClickOutside);
 	});
+	useEffect(() => {
+		sortedSearchedTags ?
+			setShowSearchResults(true)
+			: setShowSearchResults(false)
+	}, [tagName])
 
 	const handleClickOutside = e => {
 		if (!tagEditBlockRef.current.contains(e.target)) {
 			setHidden(true);
-			setNewTagName(''); setNewTagId('');
+			setTagName('');
 		}
 	};
 
 	const sortedTags = useMemo(() => {
-		if (newTagName && allTags) return allTags.sort((a, b) => a.name.localeCompare(b.name));
-	}, [newTagName, allTags]);
+		if (tagName && allTags) return allTags.sort((a, b) => a.name.localeCompare(b.name));
+	}, [tagName, allTags]);
 
 	const sortedSearchedTags = useMemo(() => {
-		if (newTagName && allTags) return (sortedTags.filter(tag => tag.name.toLowerCase().includes(newTagName.toLowerCase())))
-	}, [newTagName, sortedTags]);
+		if (tagName && allTags) return (sortedTags.filter(tag => tag.name.toLowerCase().includes(tagName.toLowerCase())))
+	}, [tagName, sortedTags]);
 
 
 	const submitNewTag = async () => {
-		if ((newTagId || newTagName) && officeTags.some(tag => tag.name !== newTagName)) {
-			const new_tag = newTagId ? { tagId: newTagId } : { name: newTagName };
-			addToList({ officeId: currentOffice, new_tag });
-			setNewTagName(''); setNewTagId('');
+		if (tagName && officeTags.some(tag => tag.name !== tagName)) {
+			addToList(currentOffice, { name: tagName });
+			setTagName('');
 		};
-		setHidden(!hidden);
+		return (setHidden(true))
 	};
 
 	return (
-		<div id="NewTagInput" className={cl.dd_list} ref={tagEditBlockRef}>
+		<div id="NewTagInput"
+			className={cl.dd_list}
+			ref={tagEditBlockRef}
+			onClick={() => setHidden(false)}>
+
 			<input
 				placeholder="tag text"
 				className="Myinput"
 				onChange={e => {
-					setNewTagName(e.target.value.toLowerCase());
-					if (e.target.value) setDropdownVisible(true)
+					setTagName(e.target.value.toLowerCase());
 				}}
 				ref={inputRef}
 				type='text'
 				hidden={hidden}
-				value={newTagName} />
+				value={tagName} />
 
-			{sortedSearchedTags && dropdownVisible && (
+			{(sortedSearchedTags && showSearchResults) &&
 				<DropdownList
 					searchResults={sortedSearchedTags}
-					newTag={newTagName}
-					setNewTagName={newTagName}
-					hide={() => setDropdownVisible(false)} />
-			)}
+					setTagName={setTagName}
+					setTagId={setTagId}
+					submit={submitNewTag}
+					hide={() => setHidden(true)}
+					hideSearchResults={() => setShowSearchResults(false)} />}
 
-			<div className="msymb_icon" onClick={submitNewTag}>
+
+			<div className="msymb_icon" onClick={(hidden) ? () => setHidden(false) : submitNewTag}>
 				{hidden
 					? 'add'
 					: 'check'

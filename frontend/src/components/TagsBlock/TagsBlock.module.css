@@ -1,20 +1,24 @@
 .tagsblock {
+
+	row-gap: 4px;
 	font-weight: 500;
 	grid-column-gap: 10px;
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	grid-area: tags;
-	color: var(--color-darkgreen);
+	font-size: 11px;
 	cursor: pointer;
+
 }
 
 .tagsblock_item {
+	font-size: 10px;
+	/* 	background: var(--color-blue); */
 	display: inline-flex;
 	font-family: 'Roboto Condensed', sans-serif;
-	padding: 2px 15px;
-	background: var(----color-beigE);
-	font-size: 12px;
+	padding: 2px 8px;
+	/* background: salmon; */
 	border-radius: 6px;
 	height: min-content;
 	cursor: pointer;

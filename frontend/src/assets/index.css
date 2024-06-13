@@ -2,12 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Tektur:wght@500&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
 
-@font-face {
-	font-family: "Comments";
-	/*Can be any text*/
-	src: local("infoOffice"),
-		url("./fonts/Montserrat-BoldItalic.ttf") format("ttf");
-}
+
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,300&family=Roboto+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,300&display=swap');
@@ -20,7 +15,7 @@
 	--color-blue: #B7D7D5;
 	--color-purple: #594356;
 	--color-darkgreen: #3B4F4E;
-	--color-buttonGreenVariant:
+	background: antiquewhite;
 }
 
 .material-symbols-outlined {
@@ -35,14 +30,19 @@
 .msymb_icon,
 button {
 	padding: 3px;
-	font-weight: 900;
+	/* 	font-weight: 900; */
+	font-size: 14px;
 	background: none;
 	border: none;
 }
 
 .msymb_icon:hover {
-	color: #174744;
+	background: #484545;
+	transition: background-color ease-out 400ms;
+	color: #ddc08d;
+	/* color: #174744; */
 	cursor: pointer;
+	border-radius: 15px;
 }
 
 svg {
@@ -107,19 +107,23 @@ body {
 }
 
 .app_wrap {
-	height: 100%;
-    grid-column-gap: 24px;
-    grid-row-gap: 8px;/* 
-    background: #b7d7d5; */
-    box-sizing: border-box;
-    display: grid;
-    background: linear-gradient(#b7d7d5, #90b0cb00);
-    grid-template-areas:
-        "q navbar navbarbuttons w"
-        "q tags tags w"
-        "x LeftSection RightSection y";
-    grid-template-columns: 5% 65% 25% 5%;
-    grid-template-rows: 50px minmax(50px, max-content) minmax(450px, max-content);
+	height: 100vh;
+	width: 100vw;
+	overflow: scroll;
+	grid-column-gap: 24px;
+	grid-row-gap: 24px;
+	background: #b7d7d5;
+	box-sizing: border-box;
+	display: grid;
+	/* background: linear-gradient(#b7d7d5, #90b0cb00); */
+	grid-template-areas:
+		"q navbar navbarbuttons w"
+		"q tags tags w"
+		"x LeftSection RightSection y";
+	grid-template-columns: 5% 2fr 2fr 5%;
+	/* grid-template-columns: auto minmax(min-content, 25%) minmax(200px, 30%) auto; */
+	grid-template-rows: 50px max-content minmax(450px, 650px);
+	justify-items: stretch;
 }
 
 
@@ -150,19 +154,19 @@ body {
 }
 
 .Myinput {
-	/* 
-	width: 100px; */
-	
+	width: 100%;
 	background: none;
-	border: none;/* 
+	border: none;
+	/* 
 	display: inline-flex; */
-    font-family: 'Roboto Condensed', sans-serif;
-    padding: 2px 15px;/* 
+	font-family: 'Roboto Condensed', sans-serif;
+	padding: 2px 15px;
+	/* 
     background: var(----color-beigE); */
-    font-size: 12px;
-    border-radius: 6px;
-    height: min-content;
-    cursor: pointer;
+	font-size: 12px;
+	border-radius: 6px;
+	height: min-content;
+	cursor: pointer;
 }
 
 
@@ -182,11 +186,13 @@ body {
 
 /* -------------LEFT SECTION------------- */
 #LeftSection {
+	/* row-gap: 16px; */
 	display: flex;
 	flex-direction: column;
 	/* margin-left: 1vw;border-radius: 7px; */
 	grid-area: LeftSection;
 	outline: 2px solid #3b4f4e;
+	height: fit-content;
 }
 
 .InfoBlock {
@@ -233,7 +239,7 @@ body {
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: center; */
-/* 
+	/* 
 	background: #B7D7D5; */
 	border-radius: 3px;
 	padding: 5px 15px;

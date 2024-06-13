@@ -13,7 +13,7 @@
 	grid-template-rows: 40px 500px;
 }
 
-.controls {
+/* .controls {
 	box-shadow: inset 0px 2px 6px rgb(255 255 255 / 89%);
 	background: linear-gradient(#e4f0ef, #f9fbfb);
 	font-family: sans-serif;
@@ -26,9 +26,48 @@
 	grid-area: controls;
 	flex-direction: row;
 	justify-content: space-between;
+} */
+
+.currentTicket_details {
+	padding: 5px 15px;
+	row-gap: 5px;
+	column-gap: 20px;
+	font-family: sans-serif;
+	display: flex;
+	align-content: flex-start;
+	grid-auto-columns: max-content;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
+.currentTicket_details_item {
+	font-size: 10px;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding: 2px 0 2px 40px;
 
+	color: #545143;
+	position: relative;
+
+}
+
+.currentTicket_details_item::before {
+	color: #3a3326;
+	left: 0;
+	content: attr(title);
+	/* 	font-size: 12px; */
+	z-index: 0;
+	position: absolute;
+	bottom: 0;
+	/* 
+	padding: 2px 6px; */
+
+}
+
+.nav_btn {
+	padding: 1px 1px 1px 3px;
+	font-family: sans-serif;
+	color: #563C5C;
+}
 
 .nav_btn:hover {
 	background-color: #563c5c0f;
@@ -36,33 +75,53 @@
 }
 
 .chat {
-	border-top-left-radius: 10px;
-	position: relative;
-	grid-area: RightSection;
+	border: 1px solid beige;
+	height: 100%;
+	border-radius: 3px;
+	padding: 5px 15px;
+	min-width: 600px;
+	grid-row-start: 3;
+	grid-row-end: 4;
+	grid-column-start: 3;
+	grid-column-end: 4;
+	display: flex;
 	font-size: 14px;
-	font-family: Arial, Helvetica, sans-serif;
+	flex-direction: column;
+}
+
+
+.currentTicket_controls {
+	padding: 5px 0px;
+	/* height: 100%; */
+	/* border-bottom: 2px dashed #545143; */
+	border-bottom: 1px solid #f5f5dc;
+	grid-area: navbar;
+	display: flex;
+	flex-direction: row;
+	cursor: pointer;
+	justify-content: flex-end;
+}
+
+.chat_body {
+	overflow-y: scroll;
+	height: 100%;
+	row-gap: 10px;
+	padding: 15px;
+	overflow-y: scroll;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 }
 
-.currentTicket_controls {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-}
-
-.chat_body {
-	row-gap: 10px;
-	max-height: 500px;
-	padding: 15px;
-	overflow-y: scroll;
-	display: flex;
-	flex-direction: column;
+.chat_body::-webkit-scrollbar {
+	display: none;
 }
 
 .messageInput {
-	padding: 10px;
+	column-gap: 8px;
+	padding: 5px 15px;
+	border: 1px solid #5943566b;
+	border-radius: 15px;
 	grid-area: messageInput;
 	display: inline-flex;
 	flex-direction: row;

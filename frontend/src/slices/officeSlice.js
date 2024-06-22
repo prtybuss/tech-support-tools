@@ -60,11 +60,24 @@ export const removeLink = createAsyncThunk('office/removeLink', async ({ officeI
 export const updateOfficeInfo = createAsyncThunk('office/updateInfo', async ({ officeId, update }) => {
 	try {
 		const res = await office.updateInfo({ officeId, update });
+
 		store.dispatch(dataLoaded(res.data));
+		return res.data
 	}
 	catch (error) { console.error(error); }
 })
 
+
+/*  ~~~~~~~~~~~~   Users   ~~~~~~~~~~~~~  */
+export const updateUserInfo = createAsyncThunk('office/updateUserInfo', async ({ userId, update }) => {
+	try {
+		const res = await office.updateUserInfo({ userId, update });
+
+		store.dispatch(dataLoaded(res.data));
+		return res.data
+	}
+	catch (error) { console.error(error); }
+})
 
 
 const officeSlice = createSlice({
@@ -93,7 +106,7 @@ const officeSlice = createSlice({
 	},
 	reducers: {
 		dataLoaded: (state, action) => {
-			console.log('action.payload', action.payload);
+
 			Object.assign(state, action.payload);
 		},
 		linksUpdated: (state, action) => {
@@ -130,7 +143,7 @@ export const numb = (state) => state.office.numb;
 export const tags = (state) => state.office.tags;
 export const comments = (state) => state.office.comments;
 export const links = (state) => state.office.links;
-export const hardware = (state) => state.office.hardware;
+export const hardware = (state) => state.office.hardware.info;
 export const selectUsers = (state) => state.office.users;
 export const selectUserId = (state, userId) => userId;
 export const selectUserById = createSelector(

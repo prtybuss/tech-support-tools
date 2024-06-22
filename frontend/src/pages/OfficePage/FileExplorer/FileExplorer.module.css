@@ -8,6 +8,7 @@
 }
 
 .explorer_header {
+	font-weight: 700;
 	column-gap: 5px;
 	font-size: 12px;
 	min-height: 30px;

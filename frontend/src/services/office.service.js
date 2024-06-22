@@ -31,6 +31,10 @@ class office {
 		return axios.get(`${REACT_APP_BASE_URL}/api/office/${officeId}/files/${userId}/${subfolder}`);
 	}
 
+
+	updateUserInfo({ userId, update }) {
+		return axios.post(`${REACT_APP_BASE_URL}/api/${userId}`, update);
+	}
 }
 
 export default new office();

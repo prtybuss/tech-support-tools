@@ -13,14 +13,6 @@ exports.office_details = (Office, User) => async (req, res, next) => {
 				path: "users", model: User, select: 'login hardware'
 			}
 		]);
-	/* 	.populate({
-			path: 'comments', populate: {		
-				path: 'author',
-				model: User,
-				select: 'login',
-			}
-		}) 
-		console.log('office',office);*/
 	res.send(office);
 }
 
@@ -49,7 +41,6 @@ exports.link_post = (Office) => async (req, res, next) => {
 	}, { new: true });
 	res.send(office.links);
 }
-
 exports.link_delete = (Office) => async (req, res, next) => {
 	const office = await Office.findByIdAndUpdate(req.params.officeId, {
 		$pull: {
@@ -59,9 +50,7 @@ exports.link_delete = (Office) => async (req, res, next) => {
 	}, { new: 'true' });
 	res.send(office.links);
 }
-
 exports.comment_post = (Office, User) => async (req, res, next) => {
-
 	const office = await Office.findByIdAndUpdate(req.params.officeId, {
 		$push: {
 			"comments": {
@@ -79,12 +68,9 @@ exports.comment_post = (Office, User) => async (req, res, next) => {
 			select: 'login'
 		}
 	});
-
 	res.send(office.comments);
 }
-
 exports.comment_delete = (Office, User) => async (req, res, next) => {
-
 	const office = await Office.findByIdAndUpdate(req.params.officeId, {
 		$pull: {
 			'comments': {
@@ -95,9 +81,24 @@ exports.comment_delete = (Office, User) => async (req, res, next) => {
 		.populate({
 			path: "comments", populate: { path: "author", model: User, select: 'login' }
 		});
-
 	res.send(office.comments);
 
+}
+
+
+exports.user_update = (Office, User) => async (req, res, next) => {
+	try {
+		const user = await User.findByIdAndUpdate(req.params.userId, req.body);
+		Office.findById(await user.office)
+			.populate([
+				{
+					path: "comments", populate: { path: "author", model: User, select: 'login' }
+				},
+				{
+					path: "users", model: User, select: 'login hardware'
+				}
+			]).then(office => res.send(office))
+	} catch (err) { next(err); }
 }
 
 

@@ -2,7 +2,7 @@ import React from "react";
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getOfficeData, postComment, postLink, removeComment, removeLink, selectUserById, updateOfficeInfo, selectUsers } from "../slices/officeSlice";
+import { getOfficeData, postComment, postLink, removeComment, removeLink, selectUserById, updateOfficeInfo, selectUsers, updateUserInfo } from "../slices/officeSlice";
 import { getDirectoryContent } from "../slices/files";
 const OfficeContext = createContext();
 
@@ -34,20 +34,23 @@ export const OfficeProvider = ({ children }) => {
 	const removeLinkWithId = (linkId) =>
 		dispatch(removeLink({ officeId: currentOffice, linkId }));
 
-	const updateHwInfo = (update) => {
-		console.log({ ...update });
-		dispatch(updateOfficeInfo({ officeId: currentOffice, update }))
+	const updateInfo = ({ id, update }) => {
+
+		console.log('update', update, 'id', id);
+		id === currentOffice
+			? dispatch(updateOfficeInfo({ officeId: currentOffice, update }))
+			: dispatch(updateUserInfo({ userId: id, update }))
 	}
 
-	const readDir = async ({ userId, subfolder }) => {
 
+
+	const readDir = async ({ userId, subfolder }) => {
 		try {
 			dispatch(getDirectoryContent({ officeId: currentOffice, userId, subfolder }))
 		} catch (error) {
 			console.error(error);
 			process.exit(1);
 		}
-
 	}
 
 	const value = {
@@ -57,7 +60,7 @@ export const OfficeProvider = ({ children }) => {
 		deleteComment: deleteComment,
 		postLink: postNewLink,
 		removeLink: removeLinkWithId,
-		updateInfo: updateHwInfo,
+		updateInfo: updateInfo,
 		watchDir: readDir
 	};
 

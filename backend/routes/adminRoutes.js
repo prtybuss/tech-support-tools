@@ -63,4 +63,9 @@ router
 	.route('/office/:officeId/files/:userId/:subfolder?')
 	.get(adminController.files_list);
 
+/*   ~ ~ ~   Users  ~ ~ ~	 */
+router
+	.route('/:userId')
+	.post(adminController.user_update);
+
 module.exports = router;

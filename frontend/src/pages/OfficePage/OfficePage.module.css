@@ -23,8 +23,8 @@
 
 .officeTags {
 	font-weight: 500;
-	column-gap: 6px;
-	row-gap: 4px;
+	column-gap: 12px;
+	/* row-gap: 4px; */
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;

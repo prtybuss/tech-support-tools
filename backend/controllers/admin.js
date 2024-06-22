@@ -35,3 +35,5 @@ exports.img_get = fs_controller.img_get(Office)
 exports.img_post = fs_controller.img_post(Office)
 exports.audio_get = fs_controller.audio_get(Office, User)
 exports.files_list = fs_controller.files_list(Office, User)
+/* 	~ ~ ~  users  ~ ~ ~	 */
+exports.user_update = office_controller.user_update(Office, User);

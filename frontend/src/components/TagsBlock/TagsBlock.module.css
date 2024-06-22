@@ -1,5 +1,7 @@
 .tagsblock {
-
+	/* 
+	color: blue; */
+	font-size: 12px;
 	row-gap: 4px;
 	font-weight: 500;
 	grid-column-gap: 10px;
@@ -13,11 +15,11 @@
 }
 
 .tagsblock_item {
-	font-size: 10px;
-	/* 	background: var(--color-blue); */
+	/* font-size: 10px; */
+	/* background: var(--color-blue); */
 	display: inline-flex;
 	font-family: 'Roboto Condensed', sans-serif;
-	padding: 2px 8px;
+	padding: 3px 15px;
 	/* background: salmon; */
 	border-radius: 6px;
 	height: min-content;

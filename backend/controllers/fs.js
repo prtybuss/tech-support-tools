@@ -7,6 +7,7 @@ exports.img_get = (Office) => async (req, res, next) => {
 	try {
 		const office = await Office.findById(req.params.officeId);
 		const img = await office.imgs.id(req.params.imgId);
+		console.log('img.path', img.path);
 		const dir = await path.join(__dirname, img.path);
 		if (!img) {
 			return next(
@@ -34,14 +35,17 @@ exports.img_post = (Office) => async (req, res, next) => {
 };
 
 exports.audio_get = (Office, User) => async (req, res, next) => {
-	const { soundDir } = User.findById(req.params.userId);
-	const filePath = (req.params.dir ? req.params.dir + '\\' : '') + req.params.file;
-	const fullPath = path.join(`${soundDir}\\`, filePath);
+	const { soundDir } = await User.findById(req.params.userId);
+	const subfolder = (req.params.dir ? req.params.dir + '/' : '') + req.params.file;
+	const fullPath = path.join(`${process.env.SHARED_FILES_DIR}${soundDir}/`, subfolder);
+	console.log('fullPath', fullPath);
 	const readStream = fs.createReadStream(fullPath, {
 		emitClose: false
 	});
-	readStream.on('error', function (err) {
-		res.end(err);
+	readStream.on('error', (err) => {
+		return next(
+			new AppError(401, "fail", "readStream.on('error'"));
+
 	});
 	readStream.pipe(res);
 }

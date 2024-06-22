@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import cl from './Hardware.module.css'
 import { useSelector } from "react-redux";
 import { selectUsers, hardware } from "../../../slices/officeSlice";
@@ -8,39 +8,41 @@ const Hardware = () => {
 	const officeHw = useSelector(hardware)
 	const usersHw = useSelector(selectUsers)
 	const { updateInfo, currentOffice } = useOffice();
+
 	const textAreaRef = useRef(null);
 	const [onEdit, setOnEdit] = useState(false);
-	const [updatedValue, setUpdatedValue] = useState(officeHw.info);
-	const [original, setOriginal] = useState({
-		info: officeHw.info,
-		id: currentOffice
-	});
+	const [currentValue, setCurrentValue] = useState(officeHw);
+	const [updatedValue, setUpdatedValue] = useState(currentValue);
+	const [currentIdForUpdate, setCurrentIdForUpdate] = useState(currentOffice);
 
-	useEffect(() => {
-		setOriginal({ id: currentOffice, ...officeHw })
-
-	}, [officeHw])
-
-	useEffect(() => {
-		setUpdatedValue(original.info)
-	}
-		, [original,/*  officeHw, */ onEdit])
-
+	console.log('\n currentIdForUpdate', currentIdForUpdate, '\ncurrentValue', currentValue, '\nupdatedValue', updatedValue);
 	useEffect(() => {
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => document.removeEventListener('mousedown', handleClickOutside)
-	});
+	}, []);
+
+	/* 	useEffect(() => {
+			setCurrentValue(officeHw)
+		}, [officeHw]); */
+
+
+	console.log('onEdit', onEdit);
+	console.log('currentValue', currentValue);
+	console.log('updatedValue', updatedValue);
+
 
 	const handleClickOutside = e => {
 		if (!textAreaRef.current.contains(e.target)) {
-			setOnEdit(false);
-			setUpdatedValue(original.info);
+			setOnEdit(false);/*  setUpdatedValue(currentValue) */
 		}
+
 	};
-	const update = () => {
-		updateInfo({ /* id: original.id, */hardware: { info: updatedValue } })
+
+	const update = async () => {
+		updateInfo({ id: currentIdForUpdate, update: { hardware: { info: updatedValue } } }); setCurrentValue(updatedValue);
 		setOnEdit(false);
 	}
+
 
 
 
@@ -48,32 +50,34 @@ const Hardware = () => {
 		<div className={cl.hw} ref={textAreaRef}>
 
 			<div className={cl.hw_header}>
-
 				<div className={cl.hw_header__options}>
+
 					<div
-						onClick={() => setOriginal(
-							{
-								info: officeHw.info,
-								id: currentOffice
-							})}
+						onClick={
+							(e) => {
+								setCurrentIdForUpdate(e.target.id);
+								setCurrentValue(officeHw)
+								setUpdatedValue(officeHw)
+							}}
 						id={currentOffice}
 						className={
-							(original.id === currentOffice)
+							(currentIdForUpdate === currentOffice)
 								? cl.hw_header__options_item_current
 								: cl.hw_header__options_item
 						}>
 						Офис
 					</div>
+
 					{usersHw.map(user => {
 						return (
 							<div
-								onClick={() => setOriginal(
-									{
-										info: user.hardware.info,
-										id: user._id
-									})}
+								onClick={(e) => {
+									setCurrentIdForUpdate(e.target.id);
+									setCurrentValue(user.hardware.info)
+									setUpdatedValue(user.hardware.info)
+								}}
 								className={
-									original.id === user._id
+									currentIdForUpdate === user._id
 										? cl.hw_header__options_item_current
 										: cl.hw_header__options_item
 								}
@@ -83,24 +87,25 @@ const Hardware = () => {
 							</div>
 						)
 					})}
+
 				</div>
 
-				<div className={cl.hw_header__controls}>
-					<div className={cl.hw_header__controls_button}>
-
-					</div>
-				</div>
+				{/* 	<div className={cl.hw_header__controls}>					<div className={cl.hw_header__controls_button}>					</div>			</div> */}
 			</div>
 
-			<div className={cl.hw_body}>
-				<div className={cl.hw_info}  >{
-					onEdit
-						? <textarea
-							autoFocus
-							value={updatedValue}
-							onChange={(e) => { setUpdatedValue(e.target.value) }}
-							className={cl.hw_textarea} />
-						: <div onClick={() => setOnEdit(true)}>{original.info}</div>}
+
+
+
+			<div className={cl.hw_body} >
+				<div className={cl.hw_info}  >
+					{
+						onEdit
+							? <textarea
+								autoFocus
+								value={updatedValue}
+								onChange={(e) => { setUpdatedValue(e.target.value) }}
+								className={cl.hw_textarea} />
+							: <div onClick={() => setOnEdit(true)}>{currentValue}</div>}
 				</div>
 
 				<div className={cl.edit_btns}>
@@ -113,7 +118,7 @@ const Hardware = () => {
 						: false}
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }
 export default Hardware;

@@ -2,14 +2,15 @@
 	/* background: #90b0cb57; */
 	/* border-bottom-left-radius: 3px; */
 	/* border-bottom-right-radius: 3px; */
+	font-weight: 600;
+	/* background: #90b0cb57; */
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 	color: #484545;
-	font-size: 12px;
-	height: -webkit-min-content;
+	/* font-size: 12px; */
 	height: min-content;
 	padding: 3px 15px;
-
 	text-decoration: none;
-
 	/* 
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;

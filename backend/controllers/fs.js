@@ -35,7 +35,7 @@ exports.img_post = (Office) => async (req, res, next) => {
 
 exports.audio_get = (Office, User) => async (req, res, next) => {
 	const { soundDir } = User.findById(req.params.userId);
-	const filePath = (req.params.dir ? req.params.dir + '/' : '') + req.params.file;
+	const filePath = (req.params.dir ? req.params.dir + '\\' : '') + req.params.file;
 	const fullPath = path.join(`${soundDir}\\`, filePath);
 	const readStream = fs.createReadStream(fullPath, {
 		emitClose: false
@@ -55,7 +55,7 @@ exports.files_list = (Office, User) => async (req, res, next) => {
 			return next(
 				new AppError(401, "fail", "sound dir does not configurated for this userId"));
 		}
-		const dirpath = path.join(`${soundDir}\\`, subfolder);
+		const dirpath = path.join(`${process.env.SHARED_FILES_DIR}${soundDir}/`, subfolder);
 		console.log('dirpath', dirpath);
 		openDir(dirpath, req, res, next);
 	} catch (err) { next(err); }

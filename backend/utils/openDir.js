@@ -6,7 +6,7 @@ const AppError = require('./appError.js');
 
 
 module.exports = async (dirpath, req, res, next) => {
-
+	console.log('dirpath',dirpath);
 	const result = [];
 	try {
 		let dir = await fs.promises.opendir(dirpath);
@@ -30,7 +30,7 @@ module.exports = async (dirpath, req, res, next) => {
 		}
 		res.send(result);
 	} catch (err) {
-		err = new AppError(404, 'fail', 'host unreacheble', req.url);
+		err = new AppError(404, 'fail', `host ${dirpath} unreacheble`);
 		next(err, req, res, next);
 	}
 };

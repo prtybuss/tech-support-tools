@@ -17,7 +17,7 @@ db.users.insertMany([
 			"edited": NumberLong("1693669157545")
 		}
 		,
-		"soundDir": "\\\\192.168.0.80\\share\\user1"
+		"soundDir": "/user1"
 	},
 	{
 		"_id": ObjectId("64f2eef25b3db9b3613edd6d"),
@@ -30,7 +30,7 @@ db.users.insertMany([
 			"info": "sample text here",
 			"edited": NumberLong("1693669157545")
 		},
-		"soundDir": "\\\\192.168.0.80\\share\\user2"
+		"soundDir": "/user2"
 	},
 	{
 		"_id": ObjectId("66661b8ab43c318e08168386"),
@@ -43,7 +43,7 @@ db.users.insertMany([
 			"info": "some info about user's hw",
 			"edited": NumberLong("1693669157545")
 		},
-		"soundDir": "\\\\192.168.0.80\\share\\user3"
+		"soundDir": "/user3"
 
 	}
 ]);
@@ -97,7 +97,7 @@ db.offices.insertMany([
 		],
 		"comments": [
 		],
-		"users": ["66661b8ab43c318e08168386" ],
+		"users": ["66661b8ab43c318e08168386"],
 		"links": [
 		],
 		"hardware": {

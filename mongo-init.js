@@ -161,12 +161,12 @@ db.tickets.insertMany([
 	{
 		"_id": ObjectId("64f8ff4066b2c39250dc9e98"),
 		"theme": "sample ticket 1",
-		"participants": ["64f2eef25b3db9b3613edd6d"],
+		"participants": [ObjectId("64f2eef25b3db9b3613edd6d")],
 		"author": ObjectId("64f2eef25b3db9b3613edd6d"),
 		"authorName": "author1",
 		"office": ObjectId("64d460b105628cc22732442e"),
 		"status": "proceed",
-		"messages": ["64f357250b101e85c1c6a95e", "64f37d290b101e85c1c6aae8"],
+		"messages": [ObjectId("64f357250b101e85c1c6a95e"), ObjectId("64f37d290b101e85c1c6aae8")],
 		"created": ISODate("2023-09-06T22:37:52.496Z"),
 		"updated": ISODate("2024-03-02T19:04:23.852Z"),
 
@@ -174,7 +174,7 @@ db.tickets.insertMany([
 	{
 		"_id": ObjectId("651dd3b4efc549cad22c9b5e"),
 		"theme": "sample ticket 2",
-		"participants": ["64eb603b4282310b24942976"],
+		"participants": [ObjectId("64eb603b4282310b24942976")],
 		"author": ObjectId("64eb603b4282310b24942976"),
 		"authorName": "author2",
 		"office": ObjectId("64d460b105628cc22732442f"),
@@ -187,7 +187,7 @@ db.tickets.insertMany([
 	{
 		"_id": ObjectId("6520b2bb2932ad2ea811c0ca"),
 		"theme": "sample ticket 3",
-		"participants": ["64f2eef25b3db9b3613edd6d"],
+		"participants": [ObjectId("64f2eef25b3db9b3613edd6d")],
 		"author": ObjectId("64f2eef25b3db9b3613edd6d"),
 		"authorName": "author1",
 		"office": ObjectId("64d460b105628cc22732442e"),

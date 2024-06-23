@@ -17,8 +17,8 @@ const Servicedesk = () => {
 
 
 	useEffect(() => {
-		dispatch(getTickets());
-		if (ticketsIds) {
+	
+		if (ticketsIds[0]) {
 			let i;
 			let l = ticketsIds.length;
 			if (l = 1) { i = 0 } else i = l - 1;

@@ -15,34 +15,22 @@ const Hardware = () => {
 	const [updatedValue, setUpdatedValue] = useState(currentValue);
 	const [currentIdForUpdate, setCurrentIdForUpdate] = useState(currentOffice);
 
-	console.log('\n currentIdForUpdate', currentIdForUpdate, '\ncurrentValue', currentValue, '\nupdatedValue', updatedValue);
 	useEffect(() => {
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => document.removeEventListener('mousedown', handleClickOutside)
 	}, []);
-
-	/* 	useEffect(() => {
-			setCurrentValue(officeHw)
-		}, [officeHw]); */
-
-
-	console.log('onEdit', onEdit);
-	console.log('currentValue', currentValue);
-	console.log('updatedValue', updatedValue);
 
 
 	const handleClickOutside = e => {
 		if (!textAreaRef.current.contains(e.target)) {
 			setOnEdit(false);/*  setUpdatedValue(currentValue) */
 		}
-
 	};
 
 	const update = async () => {
 		updateInfo({ id: currentIdForUpdate, update: { hardware: { info: updatedValue } } }); setCurrentValue(updatedValue);
 		setOnEdit(false);
 	}
-
 
 
 

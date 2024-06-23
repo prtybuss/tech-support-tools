@@ -1,13 +1,29 @@
 const AppError = require('../utils/appError');
 
-exports.ticket_list = (Ticket) => async (req, res, next) => {
+exports.ticket_list = (Ticket, Office, User, Message) => async (req, res, next) => {
 	try {
 		if (req.user.role === "admin") {
-			const all = await Ticket.find({});
+			const all = await Ticket.find({})
+				.populate([
+					{
+						path: "author", model: User, select: 'login'
+					},
+					{
+						path: "office", model: Office, select: 'adress'
+					}
+				]);
 			res.send(all);
 		};
 		if (req.user.role === "user") {
-			let list = await Ticket.find({ participants: req.user.id });
+			let list = await Ticket.find({ participants: req.user.id })
+				.populate([
+					{
+						path: "author", model: User, select: 'login'
+					},
+					{
+						path: "office", model: Office, select: 'adress'
+					}
+				]);
 			res.send(list);
 		}
 	} catch (err) { next(err); }
@@ -19,9 +35,17 @@ exports.message_read = (Ticket, Message) => async (req, res, next) => {
 		res.status(201).json('Успех! все сообщения тикета прочитаны');;
 	} catch (err) { next(err); }
 }
-exports.ticket_details = Ticket => async (req, res, next) => {
+exports.ticket_details = (Ticket, Office, User) => async (req, res, next) => {
 	try {
-		const ticket = await Ticket.findById(req.params.id);
+		const ticket = await Ticket.findById(req.params.id)
+			.populate([
+				{
+					path: "author", model: User, select: 'login'
+				},
+				{
+					path: "office", model: Office, select: 'adress'
+				}
+			])
 		const authorId = ticket.author;
 		const participants = ticket.participants;
 		if (req.user.role === "admin") {
@@ -62,11 +86,18 @@ exports.ticket_create = (Ticket, Message) => async (req, res, next) => {
 	}
 }
 
-exports.ticket_update = Ticket => async (req, res, next) => {
+exports.ticket_update = (Ticket, Office, User) => async (req, res, next) => {
 	console.log('.ticket_update: \n req.body:', req.body);
 	try {
-		const ticket = await Ticket.findByIdAndUpdate(req.params.id, req.body);
-		res.status(200).json(ticket);//старый обьект в ответе
+		await Ticket.findByIdAndUpdate(req.params.id, req.body, { returnDocument: 'after' })
+			.populate([
+				{
+					path: "author", model: User, select: 'login'
+				},
+				{
+					path: "office", model: Office, select: 'adress'
+				}
+			]).then(ticket => res.send(ticket))
 	} catch (err) {
 		next(err);
 	}

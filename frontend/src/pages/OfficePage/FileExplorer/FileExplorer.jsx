@@ -42,22 +42,21 @@ const FileExplorer = () => {
 
 
 	useEffect(() => {
-		/* 	controller.signal ? controller.abort() : false; */
 		setNowPlaying('');
-		setCurrentPath(''); /* controller.abort(); */
-		/* setCurrentUser(users?.[0]?.['_id']) */
+		setCurrentPath('');
+
+		(!currentUser && users[0])
+			? setCurrentUser(users[0]._id)
+			: false
 	}, [officeId])
 
 	useEffect(() => {
-		/* 	console.log('currentPath', currentPath); */
-		currentUser ?? setCurrentUser(users?.[0]?.['_id']);
 		if (currentUser || currentPath) watchDir({ userId: currentUser, subfolder: (currentPath ?? '') });
 	}, [currentOffice, currentUser, currentPath])
 
 
 	const play = async (fileName) => {
 		setAudioSrc('');
-		/* controller.abort(); */
 		console.log('play');
 		setNowPlaying(fileName);
 		if (fileName) {

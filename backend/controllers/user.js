@@ -14,11 +14,11 @@ const Office = db.model("office", officeSchema);
 
 exports.unauthorized = base.unauthorized(Office);
 
-exports.ticket_list = ticket_controller.ticket_list(Ticket, Message);
+exports.ticket_list = ticket_controller.ticket_list(Ticket, Office, User, Message);
 exports.message_read = ticket_controller.message_read(Ticket, Message);
-exports.ticket_detail = ticket_controller.ticket_details(Ticket);
+exports.ticket_detail = ticket_controller.ticket_details(Ticket, Office, User);
 exports.ticket_create = ticket_controller.ticket_create(Ticket, Message, User, Office);
-exports.ticket_update = ticket_controller.ticket_update(Ticket);
+exports.ticket_update = ticket_controller.ticket_update(Ticket, Office, User);
 exports.ticket_delete = ticket_controller.ticket_delete(Ticket);
 
 exports.message_list = message_controller.message_list(Ticket, Message, User);

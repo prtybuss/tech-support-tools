@@ -20,16 +20,13 @@ const Gallery = () => {
 	const [expanded, setExpanded] = useState(false)
 
 
-
 	useEffect(() => {
 		imagesIds ? setStack(imagesIds) : false;
-		/* 	setVisibleImages(stack.slice(0, 4)); */
 	}, [imagesIds])
 
 	useEffect(() => {
-		/* const currentPreview = imagesIds.map(img => img._id);  */
 		(imagesIds && stack) ? setVisibleImages(stack.slice(0, 4)) : false;
-	}, [/* imagesIds,  */stack]
+	}, [stack]
 	);
 
 	const forward = () => {
@@ -82,42 +79,44 @@ const Gallery = () => {
 			{(loadStatus === 'succeeded') && <div className={cl.mansory}>
 				{gall} </div>}
 
+			{imagesIds[0]
+				? <div className={cl.btns__wrap} >
+					<div className={cl.btns + " " + cl.btns__back}
+						onClick={() => back()}>	navigate_before	</div>
+
+					{expanded && (
+						<div className={cl.btns + " " + cl.btns__more}
+							onClick={() => collapse()}>	expand_less	</div>)}
+
+					{!(expanded) && (
+						<div className={cl.btns + " " + cl.btns__less}
+							onClick={() => showMore()}>	unfold_more	</div>)}
+
+					<div className={cl.btns + " " + cl.btns__forward}
+						onClick={() => forward()}>	navigate_next	</div>
+
+					<div className={cl.btns + " " + cl.btns__add}
+						onClick={() => setFileInputDialog(true)}	>	photo_camera	</div>
+				</div>
+				: <div className={cl.emptyGallwrap}>
+					<span className={cl.btns__add_label}> нет изображений для выбранного офиса </span>
+					<ImgUploadDialog setVisible={setFileInputDialog} />
+				</div>}
 
 
-			<div className={cl.btns__wrap}>
 
-				<div className={cl.btns + " " + cl.btns__back}
-					onClick={() => back()}
-				>	navigate_before	</div>
 
-				{expanded && (
-					<div className={cl.btns + " " + cl.btns__more}
-						onClick={() => collapse()}
-					>	expand_less	</div>)}
 
-				{!(expanded) && (
-					<div className={cl.btns + " " + cl.btns__less}
-						onClick={() => showMore()}
-					>	unfold_more	</div>)}
-
-				<div className={cl.btns + " " + cl.btns__forward}
-					onClick={() => forward()}
-				>	navigate_next	</div>
-
-				<div className={cl.btns + " " + cl.btns__add}
-					onClick={() => setFileInputDialog(true)}
-				>	photo_camera	</div>
-
-			</div>
 
 			{imgOpen &&
 				<MyModal visible={modal} setVisible={setModal}>
 					<Lightbox imgId={imgOpen} setVisible={setModal} />
 				</MyModal>}
 
-		</div>
+		</div >
 
-			{fileInputDialog ? <ImgUploadDialog setVisible={setFileInputDialog} /> : false}
+			{fileInputDialog ? <ImgUploadDialog setVisible={setFileInputDialog} /> : false
+			}
 		</>
 	)
 }

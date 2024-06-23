@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import cl from './NavBar.module.css';
 import { useAuth } from "../hooks/useAuth";
-import { selectToken } from "../slices/sessionSlice";
+import { selectLogin, selectToken } from "../slices/sessionSlice";
 import { selectAllTickets } from "../slices/ticketSlice";
 import { selectPreloaded } from "../slices/loaderSlice";
 import tambourine from '../assets/svg/tambourine.png';
@@ -14,6 +14,7 @@ import NewTicketForm from "../pages/Servicedesk/NewTicketForm/NewTicketForm";
 
 function NavBar() {
 	const token = useSelector(selectToken);
+	const login = useSelector(selectLogin);
 	const { onLogout, isAdmin } = useAuth();
 	const [modal, setModal] = useState(false);
 	const office_list = useSelector(selectPreloaded);
@@ -25,25 +26,35 @@ function NavBar() {
 
 	return (
 		< >
-			<div className={cl.navbar}>
-				{office_list && isAdmin && <NavSearch />}
-				{
-					token && (isAdmin == false)
-					&& <div className={cl.mainwrap_element/* nav_btn */} onClick={() => setModal(true)}> пожаловаться программистам </div>
-				}
-			</div>
+
+			{office_list && isAdmin && <NavSearch />}
+
+
 
 			<div className={cl.navbarbuttons}>
-				<div className={cl.mainwrap_element}>
-					<Link to='/servicedesk'>
-						<div className={cl.nt_count_wrap} style={{ zIndex: 0 }} >
-							<img src={tambourine} alt="Logo" className={cl.icon} />
-							<div className={cl.nt_count}>	{newTickets.length} </div>
-						</div>
-					</Link>
-				</div>
 
-				{token && (<div className={cl.mainwrap_element} onClick={onLogout}> выйти </div>)}
+
+
+				{token &&
+					<div className={cl.mainwrap_element}>
+						<span> новых обращений:  </span>
+
+						<Link to='/servicedesk'>
+							<div className={cl.nt_count_wrap} style={{ zIndex: 0 }} >
+								<img src={tambourine} alt="Logo" className={cl.icon} />
+								<div className={cl.nt_count}>	{newTickets.length} </div>
+							</div>
+						</Link>
+					</div>
+				}
+
+				{token && (isAdmin == false) &&
+					<div className={cl.mainwrap_element} onClick={() => setModal(true)}> пожаловаться программистам </div>}
+
+				{token && (<>
+					{/* <div className={cl.mainwrap_element} >  </div> */}
+					<div className={cl.mainwrap_element} onClick={onLogout}><span>{login}</span> выйти </div>
+				</>)}
 			</div>
 
 			<MyModal visible={modal} setVisible={setModal}>

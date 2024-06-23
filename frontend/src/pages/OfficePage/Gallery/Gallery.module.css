@@ -67,6 +67,32 @@
 	grid-area: add;
 }
 
+.emptyGallwrap {
+	padding: 3px 15px;
+	column-gap: 15px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.uploadForm {
+	padding: 3px 15px;
+	column-gap: 15px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.btns__add_label {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 11px;
+	cursor: pointer;
+}
+
+
 .btns:hover {
 	background: #f9f7ed34;
 	color: #fdffdd;

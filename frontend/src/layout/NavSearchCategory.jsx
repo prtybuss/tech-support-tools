@@ -21,10 +21,7 @@ function NavSearchCategory({ name, data }) {
 			onMouseOver={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}>
 
-
-			<div className={cl.nav_btn}
-			>{name}</div>
-
+			{name}
 
 			{isHovered && (
 				<div className={cl.dropdown} onClick={() => setIsHovered(false)}>

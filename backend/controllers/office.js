@@ -68,6 +68,7 @@ exports.comment_post = (Office, User) => async (req, res, next) => {
 			select: 'login'
 		}
 	});
+	console.log('office.comments',office.comments);
 	res.send(office.comments);
 }
 exports.comment_delete = (Office, User) => async (req, res, next) => {

@@ -11,7 +11,6 @@ const TicketsList = () => {
 	const [selectedSort, setSelectedSort] = useState('');
 	const [statusFilter, setStatusFilter] = useState('');
 
-
 	const sortedTickets = useMemo(() => {
 		if (selectedSort) {
 			return [...tickets].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]))

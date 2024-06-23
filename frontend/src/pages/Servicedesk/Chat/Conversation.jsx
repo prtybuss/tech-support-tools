@@ -20,7 +20,6 @@ const Conversation = () => {
 	const currentTicketDetailed = useSelector(selectTicketById(currentTicketId));
 	const messageInputRef = useRef();
 	const messages = useSelector(messagesSelector.selectAll);
-	/* const newMessage = useInput(); */
 	const [newMessage, setNewMessage] = useState('');
 	const userId = useSelector(selectId);
 	const officeInfo = useSelector(selectWithId(currentTicketDetailed.office));
@@ -53,7 +52,7 @@ const Conversation = () => {
 			.then(setNewMessage(''));
 
 	}
-
+	officeInfo ? console.log('officeInfo', officeInfo) : false;
 	return (
 		<div className={classes.chat}>
 
@@ -69,12 +68,12 @@ const Conversation = () => {
 				<div className={classes.currentTicket_details}>
 
 					<span className={classes.currentTicket_details_item} title='тема'> {currentTicketDetailed.theme} </span> <br />
-					<span className={classes.currentTicket_details_item} title='автор'> {currentTicketDetailed.authorName} </span> <br />
+					<span className={classes.currentTicket_details_item} title='автор'> {`${currentTicketDetailed.authorName} / ${currentTicketDetailed.author?.login} `} </span> <br />
 					<span className={classes.currentTicket_details_item} title='статус'> {currentTicketDetailed.status} </span> <br />
 					<span className={classes.currentTicket_details_item} title='создан'> {
 						date} / {time} </span> <br />
 					<span className={classes.currentTicket_details_item} title='оффис'> {
-						officeInfo['adress']} </span>
+						currentTicketDetailed.office?.adress} </span>
 				</div>}
 
 			<div className={classes.chat_body}>

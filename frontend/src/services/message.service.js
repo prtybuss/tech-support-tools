@@ -4,6 +4,7 @@ const  {REACT_APP_BASE_URL} = process.env
 class message {
 
 	getAll(id) {
+		console.log('id',id);
 		return axios.get(`${REACT_APP_BASE_URL}/ticket/${id}/messages`);
 	}
 

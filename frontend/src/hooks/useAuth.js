@@ -22,12 +22,19 @@ export const AuthProvider = ({ children }) => {
 			dispatch(authorized(await response.data.data.user));
 			axios.defaults.headers.common['Authorization'] = 'Bearer ' + await response.data.token;
 			const role = await response.data.data.user.role;
+
+
+			if (role == 'user') {
+				dispatch(getTickets());
+				return navigate('/servicedesk');
+			}
+
 			if (role == 'admin') {
 				dispatch(getProps());
 				dispatch(getTickets());
 				return navigate('/dashboard');
 			}
-			if (role == 'user') navigate('/servicedesk');
+
 		}
 		catch (error) { console.log(Error.message) }
 	};

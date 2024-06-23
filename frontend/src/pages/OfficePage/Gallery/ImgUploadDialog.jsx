@@ -50,18 +50,19 @@ const ImgUploadDialog = ({ setVisible }) => {
 
 	return (
 		<>
-			<div className={cl.ImgUploadDialog} style={{ zIndex: 2 }}>
+			<div className={cl.emptyGallwrap} style={{ zIndex: 2 }}>
 				{files /* && <FileList />  */ && ir.current.files.lenght}
 
 				<form
 					encType="multipart/form-data"
 					method="post"
+					className={cl.uploadForm}
 					onSubmit={submit} >
 
 					<label
-						for="file-upload"
-						class="custom-file-upload">
-						Загрузить фото
+						htmlFor="file-upload"
+						className={cl.btns__add_label}>
+						Выбрать
 					</label>
 					<input
 						ref={ir}
@@ -73,7 +74,7 @@ const ImgUploadDialog = ({ setVisible }) => {
 						id="file-upload"
 						placeholder="выберите файл"
 						className="MyFileinput" />
-					<button type="submit" className="link" > Ok! </button>
+					<button type="submit" className={cl.btns} > upload </button>
 				</form>
 
 

@@ -7,13 +7,11 @@ exports.img_get = (Office) => async (req, res, next) => {
 	try {
 		const office = await Office.findById(req.params.officeId);
 		const img = await office.imgs.id(req.params.imgId);
-		console.log('img.path', img.path);
-		const dir = await path.join(__dirname, img.path);
 		if (!img) {
 			return next(
 				new AppError(401, "fail", "img wasnt found"));
 		}
-		res.status(200).download(img.name, { root: dir }, function (err) {
+		res.status(200).download(img.name, { root: './public/uploads/' }, function (err) {
 			if (!err) return; // file sent
 			if (err.status !== 404) return next(err); // non-404 error
 			res.statusCode = 404;

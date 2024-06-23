@@ -10,6 +10,7 @@ const ticketsAdapter = createEntityAdapter({
 export const getTickets = createAsyncThunk('tickets/getAll', async () => {
 	try {
 		const res = await ticket.getAll();
+		console.log('res.data', res.data);
 		store.dispatch(ticketsLoaded(res.data));
 	} catch (error) { console.error(error); }
 })
@@ -34,7 +35,7 @@ export const createTicket = createAsyncThunk('tickets/create', async (initialTic
 
 export const updateTicket = createAsyncThunk('tickets/update', async ({ ticketId, changes }) => {
 	const res = await ticket.update({ ticketId, changes });
-	store.dispatch(ticketUpdated(res.data));
+	store.dispatch(ticketUpdated({ id: ticketId, changes: { ...res.data } }));
 	return res.data
 })
 
@@ -45,17 +46,12 @@ const ticketsSlice = createSlice({
 		ticketsLoaded: ticketsAdapter.addMany,
 		ticketAdded: ticketsAdapter.addOne,
 		ticketUpdated: ticketsAdapter.updateOne,
-		ticketClosed(state, action) {
-			const ticketId = action.payload;
-			const ticket = state.entities[ticketId];
-			ticket.status = "closed";
-		},
 		ticketsCleared: ticketsAdapter.removeAll
 	}
 })
 
 
-export const { ticketsLoaded, ticketAdded, ticketProceed, ticketClosed, ticketsCleared, ticketUpdated } = ticketsSlice.actions;
+export const { ticketsLoaded, ticketAdded, ticketProceed, ticketsCleared, ticketUpdated } = ticketsSlice.actions;
 
 export const ticketsSelector = ticketsAdapter.getSelectors((state) => state.tickets);
 export const selectTicketById = id => state => ticketsSelector.selectById(state, id);

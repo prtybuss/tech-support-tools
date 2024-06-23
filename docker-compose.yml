@@ -27,7 +27,7 @@ services:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
       - /mnt:/mnt/
-
+      - /usr/src/app/public/uploads
     restart: always
     env_file: ./.env
     expose:
